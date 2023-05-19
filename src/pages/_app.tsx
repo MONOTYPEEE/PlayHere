@@ -1,4 +1,4 @@
-import '@/styles/globals.css'
+import '@/styles/global.css'
 import { FluentProvider, webLightTheme } from '@fluentui/react-components'
 import type { AppProps } from 'next/app'
 import { RecoilRoot } from 'recoil'
