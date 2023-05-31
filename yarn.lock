@@ -407,6 +407,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fluentui/react-icons@npm:^2.0.202":
+  version: 2.0.202
+  resolution: "@fluentui/react-icons@npm:2.0.202"
+  dependencies:
+    "@griffel/react": ^1.0.0
+    tslib: ^2.1.0
+  peerDependencies:
+    react: ">=16.8.0 <19.0.0"
+  checksum: 7fa37bec444d22b29a474db0a743becfbb3fdddbe161df5d8d2271adf426e25deb1887be054305ea4d25adb65cfa922c1a1ffb45024f770e1f72ca80db338a23
+  languageName: node
+  linkType: hard
+
 "@fluentui/react-image@npm:^9.1.9":
   version: 9.1.9
   resolution: "@fluentui/react-image@npm:9.1.9"
@@ -2251,6 +2263,7 @@ __metadata:
   resolution: "playhere@workspace:."
   dependencies:
     "@fluentui/react-components": ^9.20.1
+    "@fluentui/react-icons": ^2.0.202
     "@supabase/supabase-js": ^2.22.0
     "@types/node": 18.16.3
     "@types/react": 18.2.0
