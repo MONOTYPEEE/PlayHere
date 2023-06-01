@@ -1,4 +1,4 @@
-import { Button, Card, Divider, Input, Label, Subtitle2, Title2, makeStyles, tokens } from "@fluentui/react-components";
+import { Button, Card, Divider, Input, Label, Body2, Title2, makeStyles, tokens } from "@fluentui/react-components";
 import { DoorArrowLeft24Filled, DoorArrowLeft24Regular, PersonCircle24Filled, PersonCircle24Regular, bundleIcon } from "@fluentui/react-icons";
 
 export default function HomeLoginComponent(){
@@ -9,7 +9,7 @@ export default function HomeLoginComponent(){
     return(
         <Card className={style.root} size="large">
             <Title2>세션 참가하기</Title2>
-            <Subtitle2>6자리 참여 코드 입력</Subtitle2>
+            <Body2>제공받은 6자리 숫자로 이루어진 참여 코드를 입력하거나, 브라우저에서 URL을 열어 참가하세요.</Body2>
             <Label size="large" className={style.label}>
                 참여 코드
                 <Input size="large" type="number"/>
