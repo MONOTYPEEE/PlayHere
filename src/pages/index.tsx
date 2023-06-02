@@ -2,7 +2,6 @@ import { LandingTabState } from "@/atoms/LandingAtom";
 import LandingAnnouncePage from "@/components/LandingAnnouncePage";
 import LandingHeader from "@/components/LandingHeader";
 import LandingHomePage from "@/components/LandingHomePage";
-import LandingWhatisPage from "@/components/LandingWhatisPage";
 import { useRecoilState } from "recoil";
 
 export default function Home() {
@@ -12,8 +11,7 @@ export default function Home() {
         <>
             <LandingHeader/>
             {TabState==="1" && <LandingHomePage/>}
-            {TabState==="2" && <LandingWhatisPage/>}
-            {TabState==="3" && <LandingAnnouncePage/>}
+            {TabState==="2" && <LandingAnnouncePage/>}
         </>
     )
 }
