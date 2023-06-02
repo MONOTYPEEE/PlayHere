@@ -26,6 +26,9 @@ export default function LandingHeader() {
 const Center = makeStyles({
     root: {
         display: 'flex',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        position: 'absolute',
+        transform: 'translate(-50%,0)',
+        left: '50%'
     }
 })
