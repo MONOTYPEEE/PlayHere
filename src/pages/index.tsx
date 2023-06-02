@@ -2,10 +2,10 @@ import { LandingTabState } from "@/atoms/LandingAtom";
 import LandingAnnouncePage from "@/components/LandingAnnouncePage";
 import LandingHeader from "@/components/LandingHeader";
 import LandingHomePage from "@/components/LandingHomePage";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 
 export default function Home() {
-    const [TabState, setTabState] = useRecoilState<string>(LandingTabState);
+    const TabState = useRecoilValue<string>(LandingTabState);
 
     return (
         <>
