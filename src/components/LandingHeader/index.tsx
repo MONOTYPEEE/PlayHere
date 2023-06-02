@@ -13,7 +13,7 @@ export default function LandingHeader() {
     return(
         <div className={style.root}>
             <Card appearance="filled" size="small" focusMode="off" role="navigation" orientation="horizontal">
-                <TabList appearance="subtle" size="small" defaultSelectedValue="1" selectedValue={TabState} onTabSelect={(e,v)=>(setTabState(v.value))}>
+                <TabList appearance="subtle" size="small" defaultSelectedValue="1" selectedValue={TabState} onTabSelect={(e,v)=>(setTabState(v.value as string))}>
                     <Tab value="1" icon={<Home24Bundle/>}>홈</Tab>
                     <Tab value="2" icon={<Megaphone24Bundle/>}>공지사항</Tab>
                 </TabList>
