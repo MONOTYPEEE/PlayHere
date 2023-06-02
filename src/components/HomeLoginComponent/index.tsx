@@ -10,8 +10,8 @@ export default function HomeLoginComponent(){
     const PersonCircleBundle = bundleIcon(PersonCircle24Filled, PersonCircle24Regular);
 
     const [JoinCode, setJoinCode] = useState<string>('');
-    function ValueChange(e: React.ChangeEventHandler<HTMLInputElement>,v:InputOnChangeData){
-        setJoinCode(v.value);
+    function ValueChange(ev: React.ChangeEvent<HTMLInputElement>, data:InputOnChangeData){
+        setJoinCode(data.value);
     }
     function RouteChange(){
         if(JoinCode.length === 6){
