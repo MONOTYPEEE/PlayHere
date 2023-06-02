@@ -1,10 +1,16 @@
-import { Button, Card, Divider, Input, Label, Body2, Title2, makeStyles, tokens } from "@fluentui/react-components";
+import { Button, Card, Divider, Input, Label, Body2, Title2, makeStyles, tokens, InputOnChangeData } from "@fluentui/react-components";
 import { DoorArrowLeft24Filled, DoorArrowLeft24Regular, PersonCircle24Filled, PersonCircle24Regular, bundleIcon } from "@fluentui/react-icons";
+import React, { useState } from "react";
 
 export default function HomeLoginComponent(){
     const style = Style();
     const DoorArrowLeftBundle = bundleIcon(DoorArrowLeft24Filled, DoorArrowLeft24Regular);
     const PersonCircleBundle = bundleIcon(PersonCircle24Filled, PersonCircle24Regular);
+
+    const [JoinCode, setJoinCode] = useState<string>('');
+    function ValueChange(e: React.ChangeEventHandler<HTMLInputElement>,v:InputOnChangeData){
+        setJoinCode(v.value);
+    }
 
     return(
         <Card className={style.root} size="large">
@@ -12,7 +18,7 @@ export default function HomeLoginComponent(){
             <Body2>제공받은 6자리 숫자로 이루어진 참여 코드를 입력하거나, 브라우저에서 URL을 열어 참가하세요.</Body2>
             <Label size="large" className={style.label}>
                 참여 코드
-                <Input size="large" type="number"/>
+                <Input size="large" value={JoinCode} onChange={ValueChange}/>
             </Label>
             <Button appearance="primary" icon={<DoorArrowLeftBundle/>}>참여</Button>
             <Divider>세션을 생성하려면</Divider>
