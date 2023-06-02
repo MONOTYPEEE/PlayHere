@@ -1,9 +1,11 @@
 import { Button, Card, Divider, Input, Label, Body2, Title2, makeStyles, tokens, InputOnChangeData } from "@fluentui/react-components";
 import { DoorArrowLeft24Filled, DoorArrowLeft24Regular, PersonCircle24Filled, PersonCircle24Regular, bundleIcon } from "@fluentui/react-icons";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 
 export default function HomeLoginComponent(){
     const style = Style();
+    const router = useRouter();
     const DoorArrowLeftBundle = bundleIcon(DoorArrowLeft24Filled, DoorArrowLeft24Regular);
     const PersonCircleBundle = bundleIcon(PersonCircle24Filled, PersonCircle24Regular);
 
@@ -11,6 +13,12 @@ export default function HomeLoginComponent(){
     function ValueChange(e: React.ChangeEventHandler<HTMLInputElement>,v:InputOnChangeData){
         setJoinCode(v.value);
     }
+    function RouteChange(){
+        if(JoinCode.length === 6){
+            router.push(`/join/${JoinCode}`);
+        }
+    }
+
 
     return(
         <Card className={style.root} size="large">
@@ -20,7 +28,7 @@ export default function HomeLoginComponent(){
                 참여 코드
                 <Input size="large" value={JoinCode} onChange={ValueChange}/>
             </Label>
-            <Button appearance="primary" icon={<DoorArrowLeftBundle/>}>참여</Button>
+            <Button appearance="primary" icon={<DoorArrowLeftBundle/>} onClick={RouteChange}>참여</Button>
             <Divider>세션을 생성하려면</Divider>
             <Button appearance="secondary" icon={<PersonCircleBundle/>}>로그인</Button>
         </Card>
