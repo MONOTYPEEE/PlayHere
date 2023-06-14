@@ -1,7 +1,7 @@
 import { LandingTabState } from "@/atoms/LandingAtom";
-import LandingAnnouncePage from "@/components/LandingAnnouncePage";
-import LandingHeader from "@/components/LandingHeader";
-import LandingHomePage from "@/components/LandingHomePage";
+import LandingAnnouncePage from "@/components/Announce/LandingAnnouncePage";
+import LandingHeader from "@/components/Landing/LandingHeader";
+import LandingHomePage from "@/components/Landing/LandingHomePage";
 import { useRecoilValue } from "recoil";
 
 export default function Home() {
