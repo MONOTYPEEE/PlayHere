@@ -2,7 +2,7 @@ import { Title1 } from "@fluentui/react-components";
 import { AnnouncementStyle } from "./style";
 import AnnounceComponent from "../AnnouncePost/Announce";
 
-export default function LandingAnnouncePage(){
+export default function AnnouncePage(){
     const Style = AnnouncementStyle();
 
     return(

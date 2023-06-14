@@ -3,7 +3,7 @@ import { DoorArrowLeft24Filled, DoorArrowLeft24Regular, PersonCircle24Filled, Pe
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
-export default function HomeLoginComponent(){
+export default function LoginComponent(){
     const style = Style();
     const router = useRouter();
     const DoorArrowLeftBundle = bundleIcon(DoorArrowLeft24Filled, DoorArrowLeft24Regular);

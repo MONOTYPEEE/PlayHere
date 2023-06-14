@@ -1,5 +1,5 @@
 import { LandingTabState } from "@/atoms/LandingAtom";
-import LandingAnnouncePage from "@/components/Announce/LandingAnnouncePage";
+import AnnouncePage from "@/components/Announce/AnnouncePage";
 import LandingHeader from "@/components/Landing/LandingHeader";
 import LandingHomePage from "@/components/Landing/LandingHomePage";
 import { useRecoilValue } from "recoil";
@@ -11,7 +11,7 @@ export default function Home() {
         <>
             <LandingHeader/>
             {TabState==="1" && <LandingHomePage/>}
-            {TabState==="2" && <LandingAnnouncePage/>}
+            {TabState==="2" && <AnnouncePage/>}
         </>
     )
 }
