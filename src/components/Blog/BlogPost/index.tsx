@@ -1,10 +1,10 @@
 import { Body1, Card, Image, Subtitle1, Title3 } from "@fluentui/react-components";
-import { AnnounceStyle } from "./style";
-import useNoticeThumb from "@/hooks/useBlogThumb";
+import { BlogPostStyle } from "./style";
+import useBlogThumb from "@/hooks/useBlogThumb";
 
-export default function AnnounceComponent({id, title, shortDesc, Created}:Notice){
-    const Style = AnnounceStyle();
-    const thumbURL = useNoticeThumb(id);
+export default function BlogPost({id, title, shortDesc, Created}:BlogPost){
+    const Style = BlogPostStyle();
+    const thumbURL = useBlogThumb(id);
 
     return(
         <Card appearance="subtle">

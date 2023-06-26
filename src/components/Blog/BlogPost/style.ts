@@ -1,6 +1,6 @@
 import { makeStyles } from "@fluentui/react-components";
 
-export const AnnounceStyle = makeStyles({
+export const BlogPostStyle = makeStyles({
     root:{
         display: 'flex',
         flexDirection: 'column',

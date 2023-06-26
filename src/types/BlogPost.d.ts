@@ -1,4 +1,4 @@
-declare interface Notice {
+declare interface BlogPost {
     Created: string;
     id: string;
     title: string;
