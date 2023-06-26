@@ -1,14 +1,6 @@
 import { supabase } from "@/lib/supabaseInit";
 import { useState, useEffect } from "react";
 
-interface Notice {
-    Created: string;
-    id: string;
-    title: string;
-    body: string;
-    shortDesc: string;
-}
-
 export default function useNotice() {
     const [storage, setStorage] = useState<Notice[]>([]);
 
