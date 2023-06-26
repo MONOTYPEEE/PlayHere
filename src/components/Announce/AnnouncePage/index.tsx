@@ -1,11 +1,11 @@
 import { Title1 } from "@fluentui/react-components";
 import { AnnouncementStyle } from "./style";
 import AnnounceComponent from "../AnnouncePost/AnnounceComponenet";
-import useNotice from "@/hooks/useNotice";
+import useBlogList from "@/hooks/useBlogList";
 
 export default function AnnouncePage(){
     const Style = AnnouncementStyle();
-    const data = useNotice();
+    const data = useBlogList();
 
     return(
         <div className={Style.root}>

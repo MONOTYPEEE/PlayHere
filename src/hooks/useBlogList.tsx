@@ -1,7 +1,7 @@
 import { supabase } from "@/lib/supabaseInit";
 import { useState, useEffect } from "react";
 
-export default function useNoticeList() {
+export default function useBlogList() {
     const [storage, setStorage] = useState<Notice[]>([]);
 
     useEffect(() => {
@@ -12,7 +12,7 @@ export default function useNoticeList() {
                     setStorage(data as Notice[]);
                 }
             } catch (error) {
-                console.error('Error@useNoticeList');
+                console.error('Error@useBlogList');
             }
         };
 
