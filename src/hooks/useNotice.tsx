@@ -6,7 +6,6 @@ interface Notice {
     id: string;
     title: string;
     body: string;
-    coverURL: string;
     shortDesc: string;
 }
 
