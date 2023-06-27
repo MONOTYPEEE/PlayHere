@@ -2,11 +2,12 @@ import { LandingTabState } from "@/atoms/LandingAtom";
 import { useRecoilState } from "recoil";
 import { Card } from "@fluentui/react-card";
 import { Button, Tab, TabList, makeStyles } from "@fluentui/react-components";
-import { Home24Filled, Home24Regular, DocumentOnePageSparkle24Filled, DocumentOnePageSparkle24Regular, bundleIcon } from "@fluentui/react-icons";
+import { Home24Filled, Home24Regular, DocumentOnePageSparkle24Filled, DocumentOnePageSparkle24Regular, bundleIcon, PersonCircle24Filled, PersonCircle24Regular } from "@fluentui/react-icons";
 
 const Home24Bundle = bundleIcon(Home24Filled, Home24Regular), DocumentOnePage24Bundle = bundleIcon(DocumentOnePageSparkle24Filled, DocumentOnePageSparkle24Regular);
 
 export default function LandingHeader() {
+    const PersonCircleBundle = bundleIcon(PersonCircle24Filled, PersonCircle24Regular);
     const style = Center();
     const [TabState, setTabState] = useRecoilState<string>(LandingTabState);
 
@@ -17,7 +18,7 @@ export default function LandingHeader() {
                     <Tab value="1" icon={<Home24Bundle/>}>홈</Tab>
                     <Tab value="2" icon={<DocumentOnePage24Bundle/>}>블로그</Tab>
                 </TabList>
-                <Button appearance="primary">로그인</Button>
+                <Button appearance="primary" icon={<PersonCircleBundle/>}>로그인</Button>
             </Card>
         </div>
     )
