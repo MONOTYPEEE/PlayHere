@@ -28,7 +28,6 @@ const Center = makeStyles({
         display: 'flex',
         justifyContent: 'center',
         position: 'absolute',
-        transform: 'translate(-50%,0)',
-        left: '50%'
+        width: '100vw',
     }
 })
