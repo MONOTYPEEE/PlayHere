@@ -10,8 +10,8 @@ export default function Home() {
     return (
         <>
             <LandingHeader/>
-            {TabState==="1" && <LandingHomePage/>}
-            {TabState==="2" && <AnnouncePage/>}
+            {TabState==="/" && <LandingHomePage/>}
+            {TabState==="/blog" && <AnnouncePage/>}
         </>
     )
 }

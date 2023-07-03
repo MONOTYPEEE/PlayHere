@@ -1,22 +1,29 @@
 import { LandingTabState } from "@/atoms/LandingAtom";
-import { useRecoilState } from "recoil";
+import { RecoilState, useRecoilState } from "recoil";
 import { Card } from "@fluentui/react-card";
 import { Button, Tab, TabList, makeStyles } from "@fluentui/react-components";
 import { Home24Filled, Home24Regular, DocumentOnePageSparkle24Filled, DocumentOnePageSparkle24Regular, bundleIcon, PersonCircle24Filled, PersonCircle24Regular } from "@fluentui/react-icons";
+import { useRouter } from "next/router";
 
 const Home24Bundle = bundleIcon(Home24Filled, Home24Regular), DocumentOnePage24Bundle = bundleIcon(DocumentOnePageSparkle24Filled, DocumentOnePageSparkle24Regular);
 
 export default function LandingHeader() {
     const PersonCircleBundle = bundleIcon(PersonCircle24Filled, PersonCircle24Regular);
     const style = Center();
+    const route = useRouter();
     const [TabState, setTabState] = useRecoilState<string>(LandingTabState);
+
+    function tabChangeHander(v:string){
+        route.push(v);
+        setTabState(v);
+    }
 
     return(
         <div className={style.root}>
             <Card appearance="filled" size="small" focusMode="off" role="navigation" orientation="horizontal">
-                <TabList appearance="subtle" size="small" defaultSelectedValue="1" selectedValue={TabState} onTabSelect={(e,v)=>(setTabState(v.value as string))}>
-                    <Tab value="1" icon={<Home24Bundle/>}>홈</Tab>
-                    <Tab value="2" icon={<DocumentOnePage24Bundle/>}>블로그</Tab>
+                <TabList appearance="subtle" size="small" defaultSelectedValue="/" selectedValue={TabState} onTabSelect={(e,v)=>(tabChangeHander(v.value as string))}>
+                    <Tab value="/" icon={<Home24Bundle/>}>홈</Tab>
+                    <Tab value="/blog" icon={<DocumentOnePage24Bundle/>}>블로그</Tab>
                 </TabList>
                 <Button appearance="primary" icon={<PersonCircleBundle/>}>로그인</Button>
             </Card>
