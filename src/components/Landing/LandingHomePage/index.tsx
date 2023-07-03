@@ -21,7 +21,7 @@ const Style = makeStyles({
             alignItems: 'center',
             justifyContent: 'center',
             columnGap: tokens.spacingHorizontalXXXL,
-            height: '98vh'
+            height: '100vh'
         },
         Section1Inner:{
             display:'flex',
