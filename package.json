@@ -10,6 +10,7 @@
     },
     "dependencies": {
         "@fluentui/react-components": "^9.20.1",
+        "@fluentui/react-icons": "^2.0.202",
         "@supabase/supabase-js": "^2.22.0",
         "@types/node": "18.16.3",
         "@types/react": "18.2.0",
@@ -20,5 +21,8 @@
         "recoil": "^0.7.7",
         "typescript": "5.0.4"
     },
-    "packageManager": "yarn@3.5.1"
+    "packageManager": "yarn@3.5.1",
+    "devDependencies": {
+        "@types/styled-components": "^5.1.26"
+    }
 }
