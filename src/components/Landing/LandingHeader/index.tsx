@@ -1,4 +1,4 @@
-import { LandingTabState } from "@/atoms/LandingAtom";
+import { UrlDirectoryState } from "@/atoms/UrlDirectoryAtom";
 import { RecoilState, useRecoilState } from "recoil";
 import { Card } from "@fluentui/react-card";
 import { Button, Tab, TabList, makeStyles } from "@fluentui/react-components";
@@ -11,7 +11,7 @@ export default function LandingHeader() {
     const PersonCircleBundle = bundleIcon(PersonCircle24Filled, PersonCircle24Regular);
     const style = Center();
     const route = useRouter();
-    const [TabState, setTabState] = useRecoilState<string>(LandingTabState);
+    const [TabState, setTabState] = useRecoilState<string>(UrlDirectoryState);
 
     function tabChangeHander(v:string){
         route.push(v);
