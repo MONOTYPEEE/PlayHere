@@ -1,7 +1,7 @@
 import { UrlDirectoryState } from "@/atoms/UrlDirectoryAtom";
 import { RecoilState, useRecoilState } from "recoil";
 import { Card } from "@fluentui/react-card";
-import { Button, Tab, TabList, makeStyles } from "@fluentui/react-components";
+import { Button, Tab, TabList, makeStyles, tokens } from "@fluentui/react-components";
 import { Home24Filled, Home24Regular, DocumentOnePageSparkle24Filled, DocumentOnePageSparkle24Regular, bundleIcon, PersonCircle24Filled, PersonCircle24Regular } from "@fluentui/react-icons";
 import { useRouter } from "next/router";
 
@@ -37,5 +37,6 @@ const Center = makeStyles({
         justifyContent: 'center',
         position: 'absolute',
         width: '100vw',
+        marginTop: tokens.spacingVerticalS,
     }
 })
