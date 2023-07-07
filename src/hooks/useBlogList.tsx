@@ -7,7 +7,7 @@ export default function useBlogList() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const { data, error } = await supabase.from('Blog').select('Created,id,title,shortDesc');
+                const { data, error } = await supabase.from('Blog').select('created,id,title,shortDesc');
                 if (!error && data) {
                     setStorage(data as BlogPost[]);
                 }
