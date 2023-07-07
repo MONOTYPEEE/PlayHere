@@ -11,7 +11,7 @@ export default function BlogPostLister({data}:BlogPostListerType){
     return(
         <div className={Style.root}>
             {data.map((d)=>{
-                return <BlogPost id={d.id} shortDesc={d.shortDesc} title={d.title} Created={d.Created} key={d.id} body={d.body}/>
+                return <BlogPost id={d.id} shortDesc={d.shortDesc} title={d.title} Created={d.created} key={d.id} body={d.body}/>
             })}
         </div>
     )
