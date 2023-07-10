@@ -10,7 +10,6 @@ export default function useBlogArticle(postId: string) {
                 const { data, error } = await supabase.from('Blog').select('created,title,shortDesc,body').eq('id',postId).single();
                 if (!error && data) {
                     setStorage(data);
-                    console.log(data);
                 }
             } catch (error) {
                 console.error('Error@useBlogList');
