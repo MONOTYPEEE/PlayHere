@@ -1,4 +1,5 @@
-import { BlogPageStyle } from "@/components/Blog/BlogPage/style";
+import { BlogArticlePageStyle } from "@/components/Blog/BlogPostPage/style";
+import Markdown from "@/components/Blog/Markdown";
 import LandingHeader from "@/components/Landing/LandingHeader";
 import useBlogArticle from "@/hooks/useBlogArticle";
 import useBlogThumb from "@/hooks/useBlogThumb";
@@ -9,7 +10,7 @@ export default function BlogPost(){
     const r = useRouter();
     const articleId = r.query.id as string;
 
-    const style = BlogPageStyle();
+    const style = BlogArticlePageStyle();
     const data = useBlogArticle(articleId);
 
     const thumb = useBlogThumb(articleId);
@@ -23,6 +24,7 @@ export default function BlogPost(){
                     <LargeTitle>{data?.title}</LargeTitle>
                     <Subtitle1>{data?.shortDesc}</Subtitle1>
                     <Subtitle2>{data?.Created}</Subtitle2>
+                    <Markdown body={data?.body}/>
                 </div>
             </div>
         </>
