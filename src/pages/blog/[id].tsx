@@ -19,7 +19,7 @@ export default function BlogPost(){
             <LandingHeader/>
             <div className={style.root}>
                 <div className={style.clild}>
-                    <Image src={thumb} />
+                    <Image src={thumb} shadow shape="rounded"/>
                     <LargeTitle>{data?.title}</LargeTitle>
                     <Subtitle1>{data?.shortDesc}</Subtitle1>
                     <Subtitle2>{data?.Created}</Subtitle2>
