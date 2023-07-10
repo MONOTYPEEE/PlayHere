@@ -23,7 +23,7 @@ export default function BlogPost(){
                     <Image src={thumb} shadow shape="rounded"/>
                     <LargeTitle>{data?.title}</LargeTitle>
                     <Subtitle1>{data?.shortDesc}</Subtitle1>
-                    <Subtitle2>{data?.Created}</Subtitle2>
+                    <Subtitle2>{data?.created}</Subtitle2>
                     <Markdown body={data?.body}/>
                 </div>
             </div>

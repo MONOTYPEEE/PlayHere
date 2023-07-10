@@ -1,5 +1,5 @@
 declare interface BlogPost {
-    Created: string;
+    created: string;
     id: string;
     title: string;
     body?: string;
