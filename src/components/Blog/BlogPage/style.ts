@@ -7,7 +7,7 @@ export const BlogPageStyle = makeStyles({
         paddingTop: '75px'
     },
     clild:{
-        maxWidth: '1108px',
+        maxWidth: '640px',
         width: '-webkit-fill-available',
         display: 'flex',
         flexDirection: 'column',
