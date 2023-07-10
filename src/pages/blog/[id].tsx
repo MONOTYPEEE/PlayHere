@@ -3,7 +3,7 @@ import Markdown from "@/components/Blog/Markdown";
 import LandingHeader from "@/components/Landing/LandingHeader";
 import useBlogArticle from "@/hooks/useBlogArticle";
 import useBlogThumb from "@/hooks/useBlogThumb";
-import { Image, LargeTitle, Subtitle1, Subtitle2 } from "@fluentui/react-components";
+import { Divider, Image, LargeTitle, Subtitle1, Subtitle2 } from "@fluentui/react-components";
 import { useRouter } from "next/router"
 
 export default function BlogPost(){
@@ -24,6 +24,7 @@ export default function BlogPost(){
                     <LargeTitle>{data?.title}</LargeTitle>
                     <Subtitle1>{data?.shortDesc}</Subtitle1>
                     <Subtitle2>{data?.created}</Subtitle2>
+                    <Divider/>
                     <Markdown body={data?.body}/>
                 </div>
             </div>
