@@ -16,8 +16,8 @@ export default function BlogPostPage(){
         <div className={style.clild}>
             <Image src={thumb} shadow shape="rounded"/>
             <LargeTitle>{data?.title}</LargeTitle>
-            <Subtitle1>{data?.shortDesc}</Subtitle1>
-            <Subtitle2>{data?.created}</Subtitle2>
+            <Subtitle1 className={style.transparent}>{data?.shortDesc}</Subtitle1>
+            <Subtitle2 className={style.transparent}>{data?.created}</Subtitle2>
             <Divider/>
             <Markdown body={data?.body}/>
         </div>

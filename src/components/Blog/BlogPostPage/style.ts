@@ -13,4 +13,7 @@ export const BlogArticlePageStyle = makeStyles({
         flexDirection: 'column',
         ...shorthands.gap('16px'),
     },
+    transparent:{
+        opacity: '50%',
+    }
 });
