@@ -16,11 +16,11 @@ export default function BlogPostPage(){
     return(
         <div className={style.clild}>
             <Image src={thumb} shadow shape="rounded"/>
-            <LargeTitle>{data?.title}</LargeTitle>
-            <Subtitle1 className={style.transparent}>{data?.shortDesc}</Subtitle1>
-            <TimeDiffBlock time={data?.created}/>
+            <LargeTitle>{data.title}</LargeTitle>
+            <Subtitle1 className={style.transparent}>{data.shortDesc}</Subtitle1>
+            <TimeDiffBlock time={data.created}/>
             <Divider/>
-            <Markdown body={data?.body}/>
+            <Markdown body={data.body}/>
         </div>
     )
 }
