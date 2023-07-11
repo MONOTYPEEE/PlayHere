@@ -1,4 +1,4 @@
-import { makeStyles, shorthands } from "@fluentui/react-components";
+import { makeStyles, shorthands, tokens } from "@fluentui/react-components";
 
 export const MarkdownStyle = makeStyles({
     body:{
@@ -6,6 +6,7 @@ export const MarkdownStyle = makeStyles({
         ...shorthands.gap('16px'),
         flexDirection: 'column',
         ...shorthands.margin('0px'),
+        marginBottom: tokens.spacingVerticalXXXL,
         fontSize: '16px'
     }
 })
