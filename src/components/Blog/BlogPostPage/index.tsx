@@ -18,7 +18,7 @@ export default function BlogPostPage(){
             <Image src={thumb} shadow shape="rounded"/>
             <LargeTitle>{data.title}</LargeTitle>
             <Subtitle1 className={style.transparent}>{data.shortDesc}</Subtitle1>
-            <TimeDiffBlock time={data.created}/>
+            <TimeDiffBlock time={data.created} transparent/>
             <Divider/>
             <Markdown body={data.body}/>
         </div>

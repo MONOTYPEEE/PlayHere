@@ -5,16 +5,17 @@ import { Clock20Filled } from "@fluentui/react-icons";
 
 interface TimeDiffBlockType{
     time: string;
+    transparent?: boolean;
 }
 
-export default function TimeDiffBlock({time}:TimeDiffBlockType){
+export default function TimeDiffBlock({time, transparent = false}:TimeDiffBlockType){
     const form = useTimeFormat(time);
     const diff = useTimeDiff(time);
     const style = TimeDiffBlockStyle();
 
     return(
         <Tooltip relationship="description" content={form} positioning="above-start">
-            <div className={style.root}>
+            <div className={style.root} style={{opacity: transparent ? '50%' : '100%'}}>
                 <Clock20Filled/>
                 <Subtitle2>
                     {diff}
@@ -27,7 +28,6 @@ export default function TimeDiffBlock({time}:TimeDiffBlockType){
 const TimeDiffBlockStyle = makeStyles({
     root:{
         display: 'flex',
-        opacity: '50%',
         ...shorthands.gap('4px'),
     }
 })
