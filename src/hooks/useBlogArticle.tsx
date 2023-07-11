@@ -2,12 +2,18 @@ import { supabase } from "@/lib/supabaseInit";
 import { useState, useEffect } from "react";
 
 export default function useBlogArticle(postId: string) {
-    const [storage, setStorage] = useState<BlogPost>();
+    const [storage, setStorage] = useState<BlogPost>({
+        id: '',
+        created: '',
+        body: '',
+        shortDesc: '',
+        title: '',
+    });
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const { data, error } = await supabase.from('Blog').select('created,title,shortDesc,body').eq('id',postId).single();
+                const { data, error } = await supabase.from('Blog').select('created,title,shortDesc,body,id').eq('id',postId).single();
                 if (!error && data) {
                     setStorage(data);
                 }
