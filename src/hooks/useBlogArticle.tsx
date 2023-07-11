@@ -2,7 +2,7 @@ import { supabase } from "@/lib/supabaseInit";
 import { useState, useEffect } from "react";
 
 export default function useBlogArticle(postId: string) {
-    const [storage, setStorage] = useState<BlogPost>({
+    const [storage, setStorage] = useState<BlogArticle>({
         id: '',
         created: '',
         body: '',
