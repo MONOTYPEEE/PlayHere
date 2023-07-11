@@ -1,6 +1,6 @@
 import useTimeDiff from "@/hooks/useTimeDiff";
 import useTimeFormat from "@/hooks/useTimeFormat";
-import { Subtitle2, Tooltip, makeStyles } from "@fluentui/react-components";
+import { Subtitle2, Tooltip, makeStyles, shorthands } from "@fluentui/react-components";
 import { Clock20Filled } from "@fluentui/react-icons";
 
 interface TimeDiffBlockType{
@@ -27,6 +27,7 @@ export default function TimeDiffBlock({time}:TimeDiffBlockType){
 const TimeDiffBlockStyle = makeStyles({
     root:{
         display: 'flex',
-        opacity: '50%'
+        opacity: '50%',
+        ...shorthands.gap('4px'),
     }
 })
