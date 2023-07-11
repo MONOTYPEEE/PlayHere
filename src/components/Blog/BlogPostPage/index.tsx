@@ -4,6 +4,7 @@ import { BlogArticlePageStyle } from "./style";
 import { Image, LargeTitle, Subtitle1, Subtitle2, Divider } from "@fluentui/react-components";
 import Markdown from "../Markdown";
 import { useRouter } from "next/router";
+import TimeDiffBlock from "../TimeDiffBlock";
 
 export default function BlogPostPage(){
     const r = useRouter();
@@ -17,7 +18,7 @@ export default function BlogPostPage(){
             <Image src={thumb} shadow shape="rounded"/>
             <LargeTitle>{data?.title}</LargeTitle>
             <Subtitle1 className={style.transparent}>{data?.shortDesc}</Subtitle1>
-            <Subtitle2 className={style.transparent}>{data?.created}</Subtitle2>
+            <TimeDiffBlock time={data?.created} className={style.transparent}/>
             <Divider/>
             <Markdown body={data?.body}/>
         </div>
