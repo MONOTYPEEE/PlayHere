@@ -1,14 +1,15 @@
 import useTimeDiff from "@/hooks/useTimeDiff";
 import useTimeFormat from "@/hooks/useTimeFormat";
-import { Subtitle2, Tooltip, makeStyles, shorthands } from "@fluentui/react-components";
+import { Tooltip, makeStyles, shorthands } from "@fluentui/react-components";
 import { Clock20Filled } from "@fluentui/react-icons";
 
 interface TimeDiffBlockType{
     time: string;
     transparent?: boolean;
+    as: React.ElementType;
 }
 
-export default function TimeDiffBlock({time, transparent = false}:TimeDiffBlockType){
+export default function TimeDiffBlock({time, transparent = false, as: Component}:TimeDiffBlockType){
     const form = useTimeFormat(time);
     const diff = useTimeDiff(time);
     const style = TimeDiffBlockStyle();
@@ -17,9 +18,9 @@ export default function TimeDiffBlock({time, transparent = false}:TimeDiffBlockT
         <Tooltip relationship="description" content={form} positioning="above-start">
             <div className={style.root} style={{opacity: transparent ? '50%' : '100%'}}>
                 <Clock20Filled/>
-                <Subtitle2>
+                <Component>
                     {diff}
-                </Subtitle2>
+                </Component>
             </div>
         </Tooltip>
     )

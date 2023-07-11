@@ -1,7 +1,7 @@
 import useBlogThumb from "@/hooks/useBlogThumb";
 import useBlogArticle from "@/hooks/useBlogArticle";
 import { BlogArticlePageStyle } from "./style";
-import { Image, LargeTitle, Subtitle1, Subtitle2, Divider } from "@fluentui/react-components";
+import { Image, LargeTitle, Subtitle1, Divider } from "@fluentui/react-components";
 import Markdown from "../Markdown";
 import { useRouter } from "next/router";
 import TimeDiffBlock from "../TimeDiffBlock";
@@ -18,7 +18,7 @@ export default function BlogPostPage(){
             <Image src={thumb} shadow shape="rounded"/>
             <LargeTitle>{data.title}</LargeTitle>
             <Subtitle1 className={style.transparent}>{data.shortDesc}</Subtitle1>
-            <TimeDiffBlock time={data.created} transparent/>
+            <TimeDiffBlock as={Subtitle1} time={data.created} transparent/>
             <Divider/>
             <Markdown body={data.body}/>
         </div>
