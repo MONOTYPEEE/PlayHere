@@ -4,7 +4,7 @@ import useBlogThumb from "@/hooks/useBlogThumb";
 import { useRouter } from "next/router";
 import TimeDiffBlock from "../TimeDiffBlock";
 
-export default function BlogPost({id, title, shortDesc, Created}:BlogPost){
+export default function BlogPost({id, title, shortDesc, created}:BlogList){
     const Style = BlogPostStyle();
     const thumbURL = useBlogThumb(id);
     const r = useRouter();
@@ -18,7 +18,7 @@ export default function BlogPost({id, title, shortDesc, Created}:BlogPost){
             <Image src={thumbURL} alt="커버 이미지" shape="rounded" shadow/>
             <Title3>{title}</Title3>
             <Subtitle1>{shortDesc}</Subtitle1>
-            <TimeDiffBlock as={Subtitle2} time={Created} transparent/>
+            <TimeDiffBlock as={Subtitle2} time={created} transparent/>
         </Card>
     )
 }
