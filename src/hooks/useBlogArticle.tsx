@@ -23,7 +23,7 @@ export default function useBlogArticle(postId: string) {
         };
 
         fetchData();
-    }, []);
+    }, [postId]);
 
     return storage;
 }
