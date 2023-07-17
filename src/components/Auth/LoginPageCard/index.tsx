@@ -4,7 +4,7 @@ import { useState } from "react";
 export default function LoginPageCard(){
     const [FormData,setFormData] = useState({id:'',pw:''});
 
-    function ValueChange(e){
+    function ValueChange(e:React.ChangeEvent<HTMLInputElement>){
         const { name, value } = e.target;
         setFormData(prevState => ({
             ...prevState,
