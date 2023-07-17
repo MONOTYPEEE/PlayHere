@@ -1,5 +1,8 @@
-import { Card, Label, Title2, Input } from "@fluentui/react-components";
+import { Card, Label, Title2, Input, Button } from "@fluentui/react-components";
+import { PersonCircle28Filled, PersonCircle28Regular, bundleIcon } from "@fluentui/react-icons";
 import { useState } from "react";
+
+const PersonCircle28Bundle = bundleIcon(PersonCircle28Filled, PersonCircle28Regular)
 
 export default function LoginPageCard(){
     const [FormData,setFormData] = useState({id:'',pw:''});
@@ -24,6 +27,9 @@ export default function LoginPageCard(){
                     비밀번호
                     <Input size="large" name="pw" value={FormData.pw} onChange={ValueChange} type="password"/>
                 </Label>
+                <Button appearance="primary" size="large" icon={<PersonCircle28Bundle/>}>
+                    로그인
+                </Button>
             </form>
         </Card>
     )
