@@ -1,11 +1,13 @@
 import { Card, Label, Title2, Input, Button } from "@fluentui/react-components";
 import { PersonCircle28Filled, PersonCircle28Regular, bundleIcon } from "@fluentui/react-icons";
 import { useState } from "react";
+import { LoginPageCardStyle } from "./style";
 
 const PersonCircle28Bundle = bundleIcon(PersonCircle28Filled, PersonCircle28Regular)
 
 export default function LoginPageCard(){
     const [FormData,setFormData] = useState({id:'',pw:''});
+    const style = LoginPageCardStyle();
 
     function ValueChange(e:React.ChangeEvent<HTMLInputElement>){
         const { name, value } = e.target;
@@ -16,9 +18,9 @@ export default function LoginPageCard(){
     }
 
     return(
-        <Card>
+        <Card className={style.width}>
             <Title2>로그인</Title2>
-            <form>
+            <form className={style.flex}>
                 <Label htmlFor="IdInput" size="large">
                     아이디
                 </Label>

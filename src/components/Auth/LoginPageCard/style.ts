@@ -5,6 +5,11 @@ export const LoginPageCardStyle = makeStyles({
         display: 'flex',
         flexDirection:'column',
         ...shorthands.gap(tokens.spacingVerticalL),
+    },
+    width:{
         width: '350px',
+        '@media screen and (max-width: 720px)':{
+            width:'95%'
+        }
     }
 })
