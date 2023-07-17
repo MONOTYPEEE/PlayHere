@@ -27,7 +27,7 @@ export default function LoginPageCard(){
                     비밀번호
                     <Input size="large" name="pw" value={FormData.pw} onChange={ValueChange} type="password"/>
                 </Label>
-                <Button appearance="primary" size="large" icon={<PersonCircle28Bundle/>}>
+                <Button type="submit" appearance="primary" size="large" icon={<PersonCircle28Bundle/>}>
                     로그인
                 </Button>
             </form>
