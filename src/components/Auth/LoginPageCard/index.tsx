@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 const PersonCircle28Bundle = bundleIcon(PersonCircle28Filled, PersonCircle28Regular)
 
 export default function LoginPageCard(){
-    const [FormData,setFormData] = useState({id:'',pw:''});
+    const [FormData,setFormData] = useState({email:'',password:''});
     const style = LoginPageCardStyle();
     const router = useRouter();
 
@@ -29,11 +29,11 @@ export default function LoginPageCard(){
             </Button>
             <Title2>로그인</Title2>
             <form className={style.flex}>
-                <Field size="large" label='아이디'>
-                    <Input id="IdInput" size="large" name="id" value={FormData.id} onChange={ValueChange}/>
+                <Field size="large" label='이메일'>
+                    <Input size="large" name="email" value={FormData.email} onChange={ValueChange}/>
                 </Field>
                 <Field size="large" label='비밀번호'>
-                    <Input id="PasswordInput" size="large" name="pw" value={FormData.pw} onChange={ValueChange} type="password"/>
+                    <Input size="large" name="password" value={FormData.password} onChange={ValueChange} type="password"/>
                 </Field>
                 
                 <Button type="submit" appearance="primary" size="large" icon={<PersonCircle28Bundle/>}>
