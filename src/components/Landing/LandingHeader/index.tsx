@@ -25,7 +25,7 @@ export default function LandingHeader() {
                     <Tab value="/" icon={<Home24Bundle/>}>홈</Tab>
                     <Tab value="/blog" icon={<DocumentOnePage24Bundle/>}>블로그</Tab>
                 </TabList>
-                <Button appearance="primary" icon={<PersonCircleBundle/>}>로그인</Button>
+                <Button onClick={()=>tabChangeHander('/auth/login')} appearance="primary" icon={<PersonCircleBundle/>}>로그인</Button>
             </Card>
         </div>
     )

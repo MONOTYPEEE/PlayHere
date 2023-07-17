@@ -30,7 +30,7 @@ export default function LoginComponent(){
             </Label>
             <Button appearance="primary" icon={<DoorArrowLeftBundle/>} onClick={RouteChange}>참여</Button>
             <Divider>세션을 생성하려면</Divider>
-            <Button appearance="secondary" icon={<PersonCircleBundle/>}>로그인</Button>
+            <Button onClick={()=>router.push('/auth/login')} appearance="secondary" icon={<PersonCircleBundle/>}>로그인</Button>
         </Card>
     )
 }
