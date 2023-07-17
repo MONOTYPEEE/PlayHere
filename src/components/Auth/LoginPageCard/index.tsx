@@ -1,4 +1,4 @@
-import { Card, Label, Title2, Input, Button } from "@fluentui/react-components";
+import { Card, Field, Title2, Input, Button } from "@fluentui/react-components";
 import { ArrowLeft20Filled, PersonCircle28Filled, PersonCircle28Regular, bundleIcon } from "@fluentui/react-icons";
 import { useState } from "react";
 import { LoginPageCardStyle } from "./style";
@@ -29,14 +29,12 @@ export default function LoginPageCard(){
             </Button>
             <Title2>로그인</Title2>
             <form className={style.flex}>
-                <Label htmlFor="IdInput" size="large">
-                    아이디
-                </Label>
-                <Input id="IdInput" size="large" name="id" value={FormData.id} onChange={ValueChange}/>
-                <Label htmlFor="PasswordInput" size="large">
-                    비밀번호
-                </Label>
-                <Input id="PasswordInput" size="large" name="pw" value={FormData.pw} onChange={ValueChange} type="password"/>
+                <Field size="large" label='아이디'>
+                    <Input id="IdInput" size="large" name="id" value={FormData.id} onChange={ValueChange}/>
+                </Field>
+                <Field size="large" label='비밀번호'>
+                    <Input id="PasswordInput" size="large" name="pw" value={FormData.pw} onChange={ValueChange} type="password"/>
+                </Field>
                 
                 <Button type="submit" appearance="primary" size="large" icon={<PersonCircle28Bundle/>}>
                     로그인
