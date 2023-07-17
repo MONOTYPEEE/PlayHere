@@ -19,14 +19,15 @@ export default function LoginPageCard(){
         <Card>
             <Title2>로그인</Title2>
             <form>
-                <Label size="large">
+                <Label htmlFor="IdInput" size="large">
                     아이디
-                    <Input size="large" name="id" value={FormData.id} onChange={ValueChange}/>
                 </Label>
-                <Label size="large">
+                <Input id="IdInput" size="large" name="id" value={FormData.id} onChange={ValueChange}/>
+                <Label htmlFor="PasswordInput" size="large">
                     비밀번호
-                    <Input size="large" name="pw" value={FormData.pw} onChange={ValueChange} type="password"/>
                 </Label>
+                <Input id="PasswordInput" size="large" name="pw" value={FormData.pw} onChange={ValueChange} type="password"/>
+                
                 <Button type="submit" appearance="primary" size="large" icon={<PersonCircle28Bundle/>}>
                     로그인
                 </Button>
