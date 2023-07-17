@@ -1,5 +1,5 @@
 import '@/styles/global.css'
-import { BrandVariants, FluentProvider, createDarkTheme, createLightTheme, webLightTheme } from '@fluentui/react-components'
+import { BrandVariants, FluentProvider, SSRProvider, createDarkTheme, createLightTheme, webLightTheme } from '@fluentui/react-components'
 import type { AppProps } from 'next/app'
 import { RecoilRoot } from 'recoil'
 
@@ -28,10 +28,12 @@ const PlayHereDark = createDarkTheme(PlayHereRamp);
 export default function App({ Component, pageProps }: AppProps) {
     
     return (
-        <FluentProvider theme={PlayHereLight}>
-            <RecoilRoot>
-                <Component {...pageProps} />
-            </RecoilRoot>
-        </FluentProvider>
+        <SSRProvider>
+            <FluentProvider theme={PlayHereLight}>
+                <RecoilRoot>
+                    <Component {...pageProps} />
+                </RecoilRoot>
+            </FluentProvider>
+        </SSRProvider>
     )
 }
