@@ -23,9 +23,19 @@ export default function LoginPageCard(){
     function changeDir(v:string){
         router.push(v);
     }
+    function FormDataVaildation(){
+        const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]+$/;
+        if(!emailRegex.test(FormData.email)){
+            alert('이메일 형식이 올바르지 않습니다');
+            return false;
+        }
+        else return true;
+    }
     function loginRequest(e:FormEvent<HTMLFormElement>){
         e.preventDefault();
-        asEmail(FormData);
+        if(FormDataVaildation()){
+            asEmail(FormData);
+        }
     }
 
     return(
