@@ -3,7 +3,6 @@ import { ArrowLeft20Filled, PersonCircle28Filled, PersonCircle28Regular, bundleI
 import React, { FormEvent, useState } from "react";
 import { LoginPageCardStyle } from "./style";
 import { useRouter } from "next/router";
-import useLogin from "@/hooks/useLogin";
 
 const PersonCircle28Bundle = bundleIcon(PersonCircle28Filled, PersonCircle28Regular)
 
@@ -11,7 +10,6 @@ export default function LoginPageCard(){
     const [FormData,setFormData] = useState({email:'',password:''});
     const style = LoginPageCardStyle();
     const router = useRouter();
-    const { asEmail, error } = useLogin();
 
     function ValueChange(e:React.ChangeEvent<HTMLInputElement>){
         const { name, value } = e.target;
