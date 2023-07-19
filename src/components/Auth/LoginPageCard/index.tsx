@@ -11,7 +11,7 @@ export default function LoginPageCard(){
     const [FormData,setFormData] = useState({email:'',password:''});
     const style = LoginPageCardStyle();
     const router = useRouter();
-    const { asEmail } = useLogin();
+    const { asEmail, error } = useLogin();
 
     function ValueChange(e:React.ChangeEvent<HTMLInputElement>){
         const { name, value } = e.target;
@@ -38,7 +38,7 @@ export default function LoginPageCard(){
                 <Field size="large" label='이메일'>
                     <Input size="large" name="email" value={FormData.email} onChange={ValueChange}/>
                 </Field>
-                <Field size="large" label='비밀번호'>
+                <Field size="large" label='비밀번호' validationState={error && "error"} validationMessage={error?.message}>
                     <Input size="large" name="password" value={FormData.password} onChange={ValueChange} type="password"/>
                 </Field>
                 
