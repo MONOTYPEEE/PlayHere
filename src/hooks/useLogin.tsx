@@ -1,4 +1,6 @@
 import { supabase } from "@/lib/supabaseInit";
+import { AuthError } from "@supabase/supabase-js";
+import { useState } from "react";
 
 interface EmailPasswordType{
     email: string;
@@ -6,19 +8,20 @@ interface EmailPasswordType{
 }
 
 export default function useLogin(){
-    async function asEmail({email,password}:EmailPasswordType) {
+    const [error, setError] = useState<AuthError>();
+
+    async function asEmail(idPw:EmailPasswordType) {
         try{
-            const { data, error } = await supabase.auth.signInWithPassword({
-                email: email,
-                password: password,
-            })
-            if(error) throw error;
-            console.log(data)
+            const { data, error } = await supabase.auth.signInWithPassword(idPw);
+
+            if(error){
+                setError(error);
+            }
         }
         catch(error){
-            console.log('err')
+            console.error(error);
         }
     }
 
-    return { asEmail };
+    return { asEmail, error };
 }
