@@ -11,5 +11,12 @@ export const LoginPageCardStyle = makeStyles({
         '@media screen and (max-width: 720px)':{
             width:'95%'
         }
+    },
+    hzFlex:{
+        display:'flex',
+        flexWrap:'nowrap',
+        '& > button':{
+            width:'100%',
+        }
     }
 })

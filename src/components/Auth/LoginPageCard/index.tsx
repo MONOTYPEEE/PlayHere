@@ -56,7 +56,7 @@ export default function LoginPageCard(){
                     로그인
                 </Button>
             </form>
-            <div>
+            <div className={style.hzFlex}>
                 <Button appearance="subtle">회원가입</Button>
                 <Button appearance="subtle">비밀번호 재설정</Button>
             </div>
