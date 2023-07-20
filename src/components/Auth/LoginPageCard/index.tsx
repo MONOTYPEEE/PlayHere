@@ -9,6 +9,8 @@ const PersonCircle28Bundle = bundleIcon(PersonCircle28Filled, PersonCircle28Regu
 
 export default function LoginPageCard(){
     const [FormData,setFormData] = useState({email:'',password:''});
+    const [emailError, setEmailError] = useState<string>('');
+    const [PasswordError, setPasswordError] = useState<string>('');
     const style = LoginPageCardStyle();
     const router = useRouter();
 
@@ -24,16 +26,21 @@ export default function LoginPageCard(){
     }
     function FormDataVaildation(){
         const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]+$/;
+        setEmailError('');
+        setPasswordError('');
         if(!emailRegex.test(FormData.email)){
-            alert('이메일 형식이 올바르지 않습니다');
+            setEmailError('이메일 형식이 올바르지 않습니다');
             return false;
+        }
+        if(FormData.password.length < 8){
+            setPasswordError('비밀번호는 최소 8자리여야 합니다')
         }
         else return true;
     }
     function loginRequest(e:FormEvent<HTMLFormElement>){
         e.preventDefault();
         if(FormDataVaildation()){
-            supabase.auth.signInWithPassword(FormData)
+            supabase.auth.signInWithPassword(FormData);
             supabase.auth.onAuthStateChange((event, session) => {
                 console.log(event, session)
                 if(event==='SIGNED_IN'){
@@ -50,10 +57,10 @@ export default function LoginPageCard(){
             </Button>
             <Title2>로그인</Title2>
             <form className={style.flex} onSubmit={loginRequest}>
-                <Field size="large" label='이메일'>
+                <Field size="large" label='이메일' validationState={emailError ? 'error' : undefined} validationMessage={emailError}>
                     <Input size="large" name="email" value={FormData.email} onChange={ValueChange}/>
                 </Field>
-                <Field size="large" label='비밀번호'>
+                <Field size="large" label='비밀번호' validationState={PasswordError ? 'error' : undefined} validationMessage={PasswordError}>
                     <Input size="large" name="password" value={FormData.password} onChange={ValueChange} type="password"/>
                 </Field>
                 
