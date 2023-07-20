@@ -41,7 +41,10 @@ export default function LoginPageCard(){
     function loginRequest(e:FormEvent<HTMLFormElement>){
         e.preventDefault();
         if(FormDataVaildation()){
-            supabase.auth.signInWithPassword(FormData);
+            supabase.auth.signInWithPassword(FormData)
+                .then(({data,error})=>{
+                    if(error) setPasswordError(error?.message);
+                })
             supabase.auth.onAuthStateChange((event, session) => {
                 console.log(event, session)
                 if(event==='SIGNED_IN'){
