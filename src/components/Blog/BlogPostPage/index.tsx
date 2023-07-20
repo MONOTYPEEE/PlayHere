@@ -16,7 +16,6 @@ export default function BlogPostPage(){
 
     useEffect(()=>{
         if(r.isReady){
-            console.log(r)
             setPageId(r.query.id as string);
         }
     },[r.query.id, r.isReady])
