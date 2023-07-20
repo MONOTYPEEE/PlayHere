@@ -3,6 +3,7 @@ import { ArrowLeft20Filled, PersonCircle28Filled, PersonCircle28Regular, bundleI
 import React, { FormEvent, useState } from "react";
 import { LoginPageCardStyle } from "./style";
 import { useRouter } from "next/router";
+import { supabase } from "@/lib/supabaseInit";
 
 const PersonCircle28Bundle = bundleIcon(PersonCircle28Filled, PersonCircle28Regular)
 
@@ -32,7 +33,13 @@ export default function LoginPageCard(){
     function loginRequest(e:FormEvent<HTMLFormElement>){
         e.preventDefault();
         if(FormDataVaildation()){
-            asEmail(FormData);
+            supabase.auth.signInWithPassword(FormData)
+            supabase.auth.onAuthStateChange((event, session) => {
+                console.log(event, session)
+                if(event==='SIGNED_IN'){
+                    changeDir('/');
+                }
+            })
         }
     }
 
@@ -46,7 +53,7 @@ export default function LoginPageCard(){
                 <Field size="large" label='이메일'>
                     <Input size="large" name="email" value={FormData.email} onChange={ValueChange}/>
                 </Field>
-                <Field size="large" label='비밀번호' validationState={error && "error"} validationMessage={error?.message}>
+                <Field size="large" label='비밀번호'>
                     <Input size="large" name="password" value={FormData.password} onChange={ValueChange} type="password"/>
                 </Field>
                 
