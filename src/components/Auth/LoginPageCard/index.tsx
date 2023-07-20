@@ -33,7 +33,8 @@ export default function LoginPageCard(){
             return false;
         }
         if(FormData.password.length < 8){
-            setPasswordError('비밀번호는 최소 8자리여야 합니다')
+            setPasswordError('비밀번호는 최소 8자리여야 합니다');
+            return false;
         }
         else return true;
     }
