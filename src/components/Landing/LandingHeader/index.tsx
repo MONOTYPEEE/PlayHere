@@ -1,11 +1,13 @@
 import { UrlDirectoryState } from "@/atoms/UrlDirectoryAtom";
-import { RecoilState, useRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { Card } from "@fluentui/react-card";
 import { Button, Tab, TabList, makeStyles, tokens } from "@fluentui/react-components";
 import { Home24Filled, Home24Regular, DocumentOnePageSparkle24Filled, DocumentOnePageSparkle24Regular, bundleIcon, PersonCircle24Filled, PersonCircle24Regular } from "@fluentui/react-icons";
 import { useRouter } from "next/router";
 import HeaderUserProfile from "../HeaderUserProfile";
 import { IsLoggedinState } from "@/atoms/LoginAtom";
+import { useEffect } from "react";
+import { supabase } from "@/lib/supabaseInit";
 
 const Home24Bundle = bundleIcon(Home24Filled, Home24Regular), DocumentOnePage24Bundle = bundleIcon(DocumentOnePageSparkle24Filled, DocumentOnePageSparkle24Regular);
 
@@ -15,6 +17,18 @@ export default function LandingHeader() {
     const route = useRouter();
     const [TabState, setTabState] = useRecoilState<string>(UrlDirectoryState);
     const [isLoggedIn,setLoggedIn] = useRecoilState<boolean>(IsLoggedinState);
+
+    useEffect(()=>{
+        supabase.auth.getSession()
+            .then(({data})=>{
+                if(data.session != null){
+                    setLoggedIn(true);
+                }
+                else{
+                    setLoggedIn(false)
+                }
+            })
+    })
 
     function tabChangeHander(v:string){
         route.push(v);
