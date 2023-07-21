@@ -4,6 +4,8 @@ import { Card } from "@fluentui/react-card";
 import { Button, Tab, TabList, makeStyles, tokens } from "@fluentui/react-components";
 import { Home24Filled, Home24Regular, DocumentOnePageSparkle24Filled, DocumentOnePageSparkle24Regular, bundleIcon, PersonCircle24Filled, PersonCircle24Regular } from "@fluentui/react-icons";
 import { useRouter } from "next/router";
+import HeaderUserProfile from "../HeaderUserProfile";
+import { IsLoggedinState } from "@/atoms/LoginAtom";
 
 const Home24Bundle = bundleIcon(Home24Filled, Home24Regular), DocumentOnePage24Bundle = bundleIcon(DocumentOnePageSparkle24Filled, DocumentOnePageSparkle24Regular);
 
@@ -12,6 +14,7 @@ export default function LandingHeader() {
     const style = Center();
     const route = useRouter();
     const [TabState, setTabState] = useRecoilState<string>(UrlDirectoryState);
+    const [isLoggedIn,setLoggedIn] = useRecoilState<boolean>(IsLoggedinState);
 
     function tabChangeHander(v:string){
         route.push(v);
@@ -25,7 +28,10 @@ export default function LandingHeader() {
                     <Tab value="/" icon={<Home24Bundle/>}>홈</Tab>
                     <Tab value="/blog" icon={<DocumentOnePage24Bundle/>}>블로그</Tab>
                 </TabList>
-                <Button onClick={()=>tabChangeHander('/auth/login')} appearance="primary" icon={<PersonCircleBundle/>}>로그인</Button>
+                {isLoggedIn ? 
+                    <HeaderUserProfile/>
+                    : <Button onClick={()=>tabChangeHander('/auth/login')} appearance="primary" icon={<PersonCircleBundle/>}>로그인</Button>
+                }
             </Card>
         </div>
     )
