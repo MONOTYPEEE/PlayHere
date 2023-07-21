@@ -31,7 +31,7 @@ export default function LandingHeader() {
                     setLoggedIn(false);
                 }
             })
-    })
+    }, [])
 
     function tabChangeHander(v:string){
         route.push(v);
