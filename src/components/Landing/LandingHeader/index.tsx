@@ -6,8 +6,9 @@ import { Home24Filled, Home24Regular, DocumentOnePageSparkle24Filled, DocumentOn
 import { useRouter } from "next/router";
 import HeaderUserProfile from "../HeaderUserProfile";
 import { IsLoggedinState } from "@/atoms/LoginAtom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabaseInit";
+import { Session } from "@supabase/supabase-js";
 
 const Home24Bundle = bundleIcon(Home24Filled, Home24Regular), DocumentOnePage24Bundle = bundleIcon(DocumentOnePageSparkle24Filled, DocumentOnePageSparkle24Regular);
 
@@ -17,15 +18,17 @@ export default function LandingHeader() {
     const route = useRouter();
     const [TabState, setTabState] = useRecoilState<string>(UrlDirectoryState);
     const [isLoggedIn,setLoggedIn] = useRecoilState<boolean>(IsLoggedinState);
+    const [sessionData,setSessionData] = useState<Session|null|undefined>();
 
     useEffect(()=>{
         supabase.auth.getSession()
             .then(({data})=>{
+                setSessionData(data.session);
                 if(data.session != null){
                     setLoggedIn(true);
                 }
                 else{
-                    setLoggedIn(false)
+                    setLoggedIn(false);
                 }
             })
     })
@@ -43,7 +46,7 @@ export default function LandingHeader() {
                     <Tab value="/blog" icon={<DocumentOnePage24Bundle/>}>블로그</Tab>
                 </TabList>
                 {isLoggedIn ? 
-                    <HeaderUserProfile/>
+                    <HeaderUserProfile data={sessionData}/>
                     : <Button onClick={()=>tabChangeHander('/auth/login')} appearance="primary" icon={<PersonCircleBundle/>}>로그인</Button>
                 }
             </Card>
