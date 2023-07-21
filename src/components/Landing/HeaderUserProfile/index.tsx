@@ -9,6 +9,6 @@ interface HeaderUserProfileType{
 export default function HeaderUserProfile({data}:HeaderUserProfileType){
     console.log(data)
     return(
-        <Persona name={data?.user.email} textAlignment="center"/>
+        <Persona name={data?.user.email} textAlignment="center" size="small"/>
     )
 }
