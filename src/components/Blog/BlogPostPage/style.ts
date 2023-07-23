@@ -8,7 +8,7 @@ export const BlogArticlePageStyle = makeStyles({
     },
     clild:{
         maxWidth: '640px',
-        width: '-webkit-fill-available',
+        width: '100%',
         display: 'flex',
         flexDirection: 'column',
         ...shorthands.gap('16px'),
