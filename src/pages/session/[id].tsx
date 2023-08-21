@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 
 export default function InsideSession(){
     const router = useRouter();
-    const [SessionID,setSessionID] = useState('');
+    const [SessionID,setSessionID] = useState<string>('');
 
     useEffect(()=>{
         if(router.isReady){
