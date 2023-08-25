@@ -1,5 +1,7 @@
+import QueueCard from "@/components/Session/QueueCard"
+import VideoThumb from "@/components/Session/VideoThumb"
 import { supabase } from "@/lib/supabaseInit"
-import { Input } from "@fluentui/react-components"
+import { Card, Input } from "@fluentui/react-components"
 import { RealtimeChannel } from "@supabase/supabase-js"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
@@ -9,6 +11,7 @@ export default function InsideSession(){
     const [SessionID,setSessionID] = useState<string>('')
     const [LiveChannel, setLiveChannel] = useState<RealtimeChannel>()
     const [Searchbar, setSearchbar] = useState<string>('')
+    const [YouTubeSearchResult, setYouTubeSearchResult] = useState<YoutubeResponse>()
 
     useEffect(()=>{
         if(router.isReady){
@@ -34,14 +37,14 @@ export default function InsideSession(){
         })
         .then(data => {
             console.log(data)
+            setYouTubeSearchResult(data)
         })
     }
 
     return(
         <div>
             {SessionID}
-            <Input value={Searchbar} onChange={(e)=>setSearchbar(e.target.value)}/>
-            <button onClick={sendmsg}>Search</button>
+            <QueueCard/>
         </div>
     )
 }
