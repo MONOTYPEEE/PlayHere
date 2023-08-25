@@ -15,9 +15,9 @@ declare interface YouTubeSnippet {
     title: string;
     description: string;
     thumbnails: {
-        default: Thumbnail;
-        medium: Thumbnail;
-        high: Thumbnail;
+        default: YouTubeThumbnail;
+        medium: YouTubeThumbnail;
+        high: YouTubeThumbnail;
     };
     channelTitle: string;
     liveBroadcastContent: string;
