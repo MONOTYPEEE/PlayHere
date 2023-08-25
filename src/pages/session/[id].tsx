@@ -29,7 +29,9 @@ export default function InsideSession(){
 
     function sendmsg(){
         fetch(`https://youtube.googleapis.com/youtube/v3/search?part=id%2Csnippet&q=${Searchbar}&type=video&key=${process.env.NEXT_PUBLIC_GOOGLE}`)
-        .then(response => {response.json()})
+        .then(response => {
+            return response.json()
+        })
         .then(data => {
             console.log(data)
         })
