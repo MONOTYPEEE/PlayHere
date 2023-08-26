@@ -7,7 +7,7 @@ export default function QueueAddDialog(){
     const [SearchResult, setSearchResult] = useState<YoutubeResponse>()
     const [SearchBar,setSearchBar] = useState<string>('')
 
-    function YouTubeSearch(event){
+    function YouTubeSearch(event:React.KeyboardEvent<HTMLInputElement>){
         if(event.key === 'Enter'){
             fetch(`https://youtube.googleapis.com/youtube/v3/search?part=id%2Csnippet&q=${SearchBar}&type=video&key=${process.env.NEXT_PUBLIC_GOOGLE}`)
             .then(response => {
@@ -30,6 +30,7 @@ export default function QueueAddDialog(){
                     <DialogTitle >
                         대기열에 추가
                     </DialogTitle>
+
                     <DialogContent>
                         <Field label='검색어' size="large">
                             <Input value={SearchBar} onChange={(e)=>setSearchBar(e.target.value)} onKeyDown={YouTubeSearch}/>
@@ -38,6 +39,7 @@ export default function QueueAddDialog(){
                             return <VideoThumb data={d} key={d.id.videoId}/>
                         })}
                     </DialogContent>
+
                     <DialogActions>
                         <DialogTrigger disableButtonEnhancement>
                             <Button>
@@ -45,6 +47,7 @@ export default function QueueAddDialog(){
                             </Button>
                         </DialogTrigger>
                     </DialogActions>
+
                 </DialogBody>
             </DialogSurface>
         </Dialog>
