@@ -1,8 +1,7 @@
 import { Button, Card, Dialog, DialogActions, DialogBody, DialogContent, DialogSurface, DialogTitle, DialogTrigger, Field, Input, Title1 } from "@fluentui/react-components";
 import { QueueCardStyle } from "./style";
-import { Add24Filled, Search24Regular, TextBulletListAdd24Regular } from "@fluentui/react-icons";
+import { Add24Filled } from "@fluentui/react-icons";
 import { useState } from "react";
-import VideoThumb from "../VideoThumb";
 
 export default function QueueCard(){
     const style = QueueCardStyle();
