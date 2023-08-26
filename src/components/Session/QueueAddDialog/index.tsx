@@ -1,9 +1,12 @@
-import { Dialog, DialogTrigger, Button, DialogSurface, DialogBody, DialogTitle, DialogContent, Field, Input, DialogActions } from "@fluentui/react-components"
+import { Dialog, DialogTrigger, Button, DialogSurface, DialogBody, DialogTitle, DialogContent, Field, Input, DialogActions, Card } from "@fluentui/react-components"
 import { Add24Filled } from "@fluentui/react-icons"
 import VideoThumb from "../VideoThumb"
 import { Dispatch, SetStateAction, useState } from "react"
+import { QueueAddDialogStyle } from "./style"
 
 export default function QueueAddDialog(){
+    const style = QueueAddDialogStyle()
+
     const [SearchResult, setSearchResult] = useState<YoutubeResponse>()
     const [SearchBar,setSearchBar] = useState<string>('')
 
@@ -35,9 +38,15 @@ export default function QueueAddDialog(){
                         <Field label='검색어' size="large">
                             <Input value={SearchBar} onChange={(e)=>setSearchBar(e.target.value)} onKeyDown={YouTubeSearch}/>
                         </Field>
-                        {SearchResult && SearchResult.items.map((d)=>{
-                            return <VideoThumb data={d} key={d.id.videoId}/>
-                        })}
+                        <div className={style.list}>
+                            {SearchResult && SearchResult.items.map((d)=>{
+                                return(
+                                    <Card appearance="subtle">
+                                        <VideoThumb data={d} key={d.id.videoId}/>
+                                    </Card>
+                                )
+                            })}
+                        </div>
                     </DialogContent>
 
                     <DialogActions>
