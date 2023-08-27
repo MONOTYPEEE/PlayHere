@@ -41,8 +41,8 @@ export default function QueueAddDialog(){
                         <div className={style.list}>
                             {SearchResult && SearchResult.items.map((d)=>{
                                 return(
-                                    <Card appearance="subtle">
-                                        <VideoThumb data={d} key={d.id.videoId}/>
+                                    <Card appearance="subtle" key={d.id.videoId}>
+                                        <VideoThumb data={d}/>
                                     </Card>
                                 )
                             })}
