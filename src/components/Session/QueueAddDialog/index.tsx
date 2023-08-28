@@ -9,6 +9,7 @@ export default function QueueAddDialog(){
 
     const [SearchResult, setSearchResult] = useState<YoutubeResponse>()
     const [SearchBar,setSearchBar] = useState<string>('')
+    const [Selected, setSelected] = useState<number>();
 
     function YouTubeSearch(event:React.KeyboardEvent<HTMLInputElement>){
         if(event.key === 'Enter'){
@@ -39,9 +40,9 @@ export default function QueueAddDialog(){
                             <Input value={SearchBar} onChange={(e)=>setSearchBar(e.target.value)} onKeyDown={YouTubeSearch}/>
                         </Field>
                         <div className={style.list}>
-                            {SearchResult && SearchResult.items.map((d)=>{
+                            {SearchResult && SearchResult.items.map((d, i)=>{
                                 return(
-                                    <Card appearance="subtle" key={d.id.videoId}>
+                                    <Card selected={i===Selected} onClick={()=>setSelected(i)} appearance="subtle" key={d.id.videoId}>
                                         <VideoThumb data={d}/>
                                     </Card>
                                 )
