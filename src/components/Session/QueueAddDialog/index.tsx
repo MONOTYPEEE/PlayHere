@@ -11,15 +11,19 @@ export default function QueueAddDialog(){
     const [SearchBar,setSearchBar] = useState<string>('')
     const [Selected, setSelected] = useState<number>();
 
-    function YouTubeSearch(event:React.KeyboardEvent<HTMLInputElement>){
-        if(event.key === 'Enter'){
-            fetch(`https://youtube.googleapis.com/youtube/v3/search?part=id%2Csnippet&q=${SearchBar}&type=video&key=${process.env.NEXT_PUBLIC_GOOGLE}`)
+    function YouTubeSearch(){
+        fetch(`https://youtube.googleapis.com/youtube/v3/search?part=id%2Csnippet&q=${SearchBar}&type=video&key=${process.env.NEXT_PUBLIC_GOOGLE}`)
             .then(response => {
                 return response.json()
             })
             .then(data => {
                 setSearchResult(data)
-            })
+        })
+    }
+
+    function EnterKeyHandler(event:React.KeyboardEvent<HTMLInputElement>){
+        if(event.key === 'Enter'){
+            YouTubeSearch()
         }
     }
 
@@ -36,7 +40,7 @@ export default function QueueAddDialog(){
 
                     <DialogContent>
                         <Field label='검색어' size="large">
-                            <Input value={SearchBar} onChange={(e)=>setSearchBar(e.target.value)} onKeyDown={YouTubeSearch}/>
+                            <Input value={SearchBar} onChange={(e)=>setSearchBar(e.target.value)} onKeyDown={EnterKeyHandler}/>
                         </Field>
                         <div className={style.list}>
                             {SearchResult && SearchResult.items.map((d, i)=>{
