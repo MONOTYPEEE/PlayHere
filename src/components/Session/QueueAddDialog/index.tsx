@@ -18,7 +18,6 @@ export default function QueueAddDialog(){
                 return response.json()
             })
             .then(data => {
-                console.log(data)
                 setSearchResult(data)
             })
         }
