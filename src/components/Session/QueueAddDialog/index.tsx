@@ -1,5 +1,5 @@
 import { Dialog, DialogTrigger, Button, DialogSurface, DialogBody, DialogTitle, DialogContent, Field, Input, DialogActions, Card } from "@fluentui/react-components"
-import { Add24Filled } from "@fluentui/react-icons"
+import { Add24Filled, Search24Regular } from "@fluentui/react-icons"
 import VideoThumb from "../VideoThumb"
 import { Dispatch, SetStateAction, useState } from "react"
 import { QueueAddDialogStyle } from "./style"
@@ -40,7 +40,7 @@ export default function QueueAddDialog(){
 
                     <DialogContent>
                         <Field label='검색어' size="large">
-                            <Input value={SearchBar} onChange={(e)=>setSearchBar(e.target.value)} onKeyDown={EnterKeyHandler}/>
+                            <Input value={SearchBar} onChange={(e)=>setSearchBar(e.target.value)} onKeyDown={EnterKeyHandler} type="search" contentAfter={<Search24Regular/>}/>
                         </Field>
                         <div className={style.list}>
                             {SearchResult && SearchResult.items.map((d, i)=>{
