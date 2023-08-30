@@ -3,10 +3,12 @@ import { Add24Filled, Search24Regular, TextBulletListAdd24Regular } from "@fluen
 import VideoThumb from "../VideoThumb"
 import { useState } from "react"
 import { QueueAddDialogStyle } from "./style"
+import { RealtimeChannelAtom } from "@/atoms/RealtimeChannelAtom"
+import { useRecoilState } from "recoil"
 
 export default function QueueAddDialog(){
     const style = QueueAddDialogStyle()
-
+    const [LiveChannel, setLiveChannel] = useRecoilState(RealtimeChannelAtom)
     const [SearchResult, setSearchResult] = useState<YoutubeResponse>()
     const [SearchBar,setSearchBar] = useState<string>('')
     const [Selected, setSelected] = useState<number>()
