@@ -1,7 +1,7 @@
 import { Dialog, DialogTrigger, Button, DialogSurface, DialogBody, DialogTitle, DialogContent, Field, Input, DialogActions, Card } from "@fluentui/react-components"
-import { Add24Filled, Search24Regular } from "@fluentui/react-icons"
+import { Add24Filled, Search24Regular, TextBulletListAdd24Regular } from "@fluentui/react-icons"
 import VideoThumb from "../VideoThumb"
-import { Dispatch, SetStateAction, useState } from "react"
+import { useState } from "react"
 import { QueueAddDialogStyle } from "./style"
 
 export default function QueueAddDialog(){
@@ -9,7 +9,7 @@ export default function QueueAddDialog(){
 
     const [SearchResult, setSearchResult] = useState<YoutubeResponse>()
     const [SearchBar,setSearchBar] = useState<string>('')
-    const [Selected, setSelected] = useState<number>();
+    const [Selected, setSelected] = useState<number>()
 
     function YouTubeSearch(){
         fetch(`https://youtube.googleapis.com/youtube/v3/search?part=id%2Csnippet&q=${SearchBar}&type=video&key=${process.env.NEXT_PUBLIC_GOOGLE}`)
@@ -25,6 +25,10 @@ export default function QueueAddDialog(){
         if(event.key === 'Enter'){
             YouTubeSearch()
         }
+    }
+
+    function AddQueue(){
+        console.log(Selected)
     }
 
     return(
@@ -57,6 +61,11 @@ export default function QueueAddDialog(){
                         <DialogTrigger disableButtonEnhancement>
                             <Button>
                                 닫기
+                            </Button>
+                        </DialogTrigger>
+                        <DialogTrigger action="close">
+                            <Button onClick={AddQueue} appearance="primary" icon={<TextBulletListAdd24Regular/>}>
+                                추가
                             </Button>
                         </DialogTrigger>
                     </DialogActions>
