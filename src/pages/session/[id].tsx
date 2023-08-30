@@ -12,8 +12,6 @@ export default function InsideSession(){
     const CenterStyle = Center();
     const [SessionID,setSessionID] = useState<string>('')
     const [LiveChannel, setLiveChannel] = useState<RealtimeChannel>()
-    const [Searchbar, setSearchbar] = useState<string>('')
-    const [YouTubeSearchResult, setYouTubeSearchResult] = useState<YoutubeResponse>()
 
     useEffect(()=>{
         if(router.isReady){
