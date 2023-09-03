@@ -17,14 +17,10 @@ export default function InsideSession(){
         if(router.isReady){
             setSessionID(router.query.id as string)
         }
-    },[router.isReady])
-    useEffect(()=>{
-        if(SessionID){
-            setLiveChannel(
-                supabase.channel(SessionID).subscribe()
-            )
+        if(SessionID !== ''){
+            setLiveChannel(supabase.channel(SessionID).subscribe())
         }
-    },[SessionID])
+    },[router.isReady])
 
     return(
         <div className={CenterStyle.flex}>
