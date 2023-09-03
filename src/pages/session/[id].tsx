@@ -23,9 +23,6 @@ export default function InsideSession(){
             setLiveChannel(
                 supabase.channel(SessionID).subscribe()
             )
-            LiveChannel?.on('broadcast', {event:'msg'},payload=>{
-                console.log(payload)
-            })
         }
     },[SessionID])
 
