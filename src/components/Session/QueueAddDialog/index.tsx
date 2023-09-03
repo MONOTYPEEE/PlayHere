@@ -5,13 +5,15 @@ import { useState } from "react"
 import { QueueAddDialogStyle } from "./style"
 import { RealtimeChannelAtom } from "@/atoms/RealtimeChannelAtom"
 import { useRecoilState } from "recoil"
+import { PlaylistQueue } from "@/atoms/PlaylistQueue"
 
 export default function QueueAddDialog(){
     const style = QueueAddDialogStyle()
     const [LiveChannel, setLiveChannel] = useRecoilState(RealtimeChannelAtom)
+    const [Queue, setQueue] = useRecoilState(PlaylistQueue)
     const [SearchResult, setSearchResult] = useState<YoutubeResponse>()
     const [SearchBar,setSearchBar] = useState<string>('')
-    const [Selected, setSelected] = useState<number>()
+    const [Selected, setSelected] = useState<number>(800)
 
     function YouTubeSearch(){
         fetch(`https://youtube.googleapis.com/youtube/v3/search?part=id%2Csnippet&q=${SearchBar}&type=video&key=${process.env.NEXT_PUBLIC_GOOGLE}`)
@@ -30,7 +32,14 @@ export default function QueueAddDialog(){
     }
 
     function AddQueue(){
-        console.log(Selected)
+        if(Selected !== 800){
+            LiveChannel?.send({
+                type: 'brodcast',
+                event: 'addtoQueue',
+                payload: SearchResult?.items[Selected],
+            })
+            setQueue([...Queue, SearchResult?.items[Selected] as YouTubeVideoItem])
+        }
     }
 
     return(
@@ -65,7 +74,7 @@ export default function QueueAddDialog(){
                                 닫기
                             </Button>
                         </DialogTrigger>
-                        <DialogTrigger action="close">
+                        <DialogTrigger>
                             <Button onClick={AddQueue} appearance="primary" icon={<TextBulletListAdd24Regular/>}>
                                 추가
                             </Button>
