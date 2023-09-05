@@ -1,15 +1,13 @@
 import { Card, Title2 } from "@fluentui/react-components";
 import { QueueCardStyle } from "./style"
 import QueueAddDialog from "../QueueAddDialog"
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { PlaylistQueue } from "@/atoms/PlaylistQueue";
 import VideoThumb from "../VideoThumb";
 
 export default function QueueCard(){
     const style = QueueCardStyle()
-    const [Queue,setQueue] = useRecoilState(PlaylistQueue)
-
-    
+    const Queue = useRecoilValue(PlaylistQueue)
 
     return(
         <Card>
