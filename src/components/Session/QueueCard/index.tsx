@@ -6,6 +6,7 @@ import { PlaylistQueue } from "@/atoms/PlaylistQueue";
 import VideoThumb from "../VideoThumb";
 import { supabase } from "@/lib/supabaseInit";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function QueueCard(){
     const router = useRouter()
@@ -18,7 +19,7 @@ export default function QueueCard(){
         'broadcast',
         { event: 'addtoQueue' },
         payload => {
-            console.log(payload)
+            setQueue([...Queue, payload.payload])
         }
     )
 
