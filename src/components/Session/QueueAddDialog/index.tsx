@@ -5,9 +5,12 @@ import { useState } from "react"
 import { QueueAddDialogStyle } from "./style"
 import { useRecoilState } from "recoil"
 import { PlaylistQueue } from "@/atoms/PlaylistQueue"
+import { supabase } from "@/lib/supabaseInit"
+import { useRouter } from "next/router"
 
 export default function QueueAddDialog(){
     const style = QueueAddDialogStyle()
+    const router = useRouter()
     const [Queue, setQueue] = useRecoilState(PlaylistQueue)
     const [SearchResult, setSearchResult] = useState<YoutubeResponse>()
     const [SearchBar,setSearchBar] = useState<string>('')
@@ -30,14 +33,18 @@ export default function QueueAddDialog(){
     }
 
     function AddQueue(){
-        if(Selected !== 800){
-            LiveChannel?.send({
-                type: 'brodcast',
-                event: 'addtoQueue',
-                payload: SearchResult?.items[Selected],
-            })
-            setQueue([...Queue, SearchResult?.items[Selected] as YouTubeVideoItem])
-        }
+        const chan = supabase.channel(router.query.id as string, {config:{broadcast:{self: true}}})
+
+        chan.subscribe(status => {
+            console.log(status)
+            if(status === 'SUBSCRIBED' && Selected !== 800){
+                chan.send({
+                    type: 'broadcast',
+                    event: 'addtoQueue',
+                    payload: SearchResult?.items[Selected]
+                })
+            }
+        })
     }
 
     return(
