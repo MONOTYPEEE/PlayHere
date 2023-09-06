@@ -17,7 +17,7 @@ export default function Markdown({body}:MarkdownType){
                 h1: Title1 as HeadingComponent,
                 h2: Title2 as HeadingComponent,
                 h3: Title3 as HeadingComponent,
-                p: Body2,
+                p: 'div',
             }}>
                 {body}
             </ReactMarkdown>
