@@ -3,7 +3,6 @@ import NowPlayingCard from "@/components/join/NowPlayingCard"
 import JoinCard from "@/components/join/joinCard"
 import { supabase } from "@/lib/supabaseInit"
 import { Center } from "@/styles/center"
-import { Dialog, DialogSurface, DialogBody, DialogTitle, DialogContent, DialogActions, DialogTrigger, Button } from "@fluentui/react-components"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 
