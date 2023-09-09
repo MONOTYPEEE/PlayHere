@@ -10,6 +10,7 @@ export default function InviteCode(){
     const router = useRouter()
     const centerStyle = Center()
     const [IsErrorOpen, setIsErrorOpen] = useState<boolean>(false)
+    const [SessionInfo, setSessionInfo] = useState<YouTubeVideoItem>()
 
     useEffect(()=>{
         if(router.isReady){
@@ -22,6 +23,10 @@ export default function InviteCode(){
                     if(data === null){
                         setIsErrorOpen(true)
                     }
+                    else{
+                        console.log(data.nowPlaying)
+                        setSessionInfo(data.nowPlaying)
+                    }
                 })
         }
     },[router.isReady])
@@ -31,7 +36,7 @@ export default function InviteCode(){
             {!IsErrorOpen && 
                 <>
                     <JoinCard/>
-                    <NowPlayingCard/>
+                    <NowPlayingCard data={SessionInfo}/>
                 </>
             }
             <Dialog open={IsErrorOpen}>
