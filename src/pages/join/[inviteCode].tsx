@@ -1,4 +1,4 @@
-import CardStack from "@/components/join/CardStack"
+import JoinCardStack from "@/components/join/JoinCardStack"
 import ErrorAlert from "@/components/join/ErrorAlert"
 import { supabase } from "@/lib/supabaseInit"
 import { Center } from "@/styles/center"
@@ -32,7 +32,7 @@ export default function InviteCode(){
 
     return(
         <div className={centerStyle.flex} style={{gap: '16px', flexDirection: 'column'}}>
-            {SessionInfo && <CardStack isOpen={IsErrorOpen} nowPlaying={SessionInfo}/>}
+            {SessionInfo && <JoinCardStack isOpen={IsErrorOpen} nowPlaying={SessionInfo}/>}
             <ErrorAlert isOpen={IsErrorOpen}/>
         </div>
     )

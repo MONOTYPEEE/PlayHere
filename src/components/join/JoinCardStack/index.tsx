@@ -1,12 +1,12 @@
 import JoinCard from "../joinCard"
 import NowPlayingCard from "../NowPlayingCard"
 
-interface CardStackType{
+interface JoinCardStackType{
     isOpen: boolean
     nowPlaying: YouTubeVideoItem;
 }
 
-export default function CardStack({isOpen, nowPlaying}:CardStackType){
+export default function JoinCardStack({isOpen, nowPlaying}:JoinCardStackType){
     if(!isOpen){
         return(
             <div>
