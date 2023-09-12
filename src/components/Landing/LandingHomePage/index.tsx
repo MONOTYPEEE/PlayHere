@@ -13,7 +13,7 @@ export default function LandingHomePage(){
             <LoginComponent/>
             <div className={style.Section1Inner}>
                 <Display>우리, 여기서<br/>플레이!</Display>
-                <Body1>PlayHere는 어쩌구 소개문구입니다<br/>와 br도 했어요</Body1>
+                <Body1>PlayHere는 로컬 음악 공유 서비스입니다<br/>같은 공간에서 함께 서로의 음악을 나눌 수 있습니다</Body1>
             </div>
         </div>
     )
