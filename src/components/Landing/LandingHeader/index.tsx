@@ -33,21 +33,16 @@ export default function LandingHeader() {
             })
     }, [])
 
-    function tabChangeHander(v:string){
-        route.push(v);
-        setTabState(v);
-    }
-
     return(
         <div className={style.root}>
             <Card appearance="filled" size="small" focusMode="off" role="navigation" orientation="horizontal">
-                <TabList appearance="subtle" size="small" defaultSelectedValue="/" selectedValue={TabState} onTabSelect={(e,v)=>(tabChangeHander(v.value as string))}>
+                <TabList appearance="subtle" size="small" defaultSelectedValue="/" selectedValue={TabState} onTabSelect={(e,v)=>(route.push(v.value as string))}>
                     <Tab value="/" icon={<Home24Bundle/>}>홈</Tab>
                     <Tab value="/blog" icon={<DocumentOnePage24Bundle/>}>블로그</Tab>
                 </TabList>
                 {isLoggedIn ? 
                     <HeaderUserProfile data={sessionData}/>
-                    : <Button onClick={()=>tabChangeHander('/auth/login')} appearance="primary" icon={<PersonCircleBundle/>}>로그인</Button>
+                    : <Button onClick={()=>route.push('/auth/login')} appearance="primary" icon={<PersonCircleBundle/>}>로그인</Button>
                 }
             </Card>
         </div>
