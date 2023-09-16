@@ -1,33 +1,38 @@
-import { IsLoggedinState } from "@/atoms/LoginAtom";
-import { supabase } from "@/lib/supabaseInit";
-import { MenuButton, Menu, MenuItem, MenuList, MenuPopover, MenuTrigger, Persona } from "@fluentui/react-components";
-import { SignOut24Filled } from "@fluentui/react-icons";
-import { Session } from "@supabase/supabase-js";
-import { useRouter } from "next/router";
-import { useRecoilState } from "recoil";
+import { IsLoggedinState } from "@/atoms/LoginAtom"
+import { supabase } from "@/lib/supabaseInit"
+import { MenuButton, Menu, MenuItem, MenuList, MenuPopover, MenuTrigger, Persona } from "@fluentui/react-components"
+import { SignOut24Filled } from "@fluentui/react-icons"
+import { Session } from "@supabase/supabase-js"
+import { useRouter } from "next/router"
+import { useEffect, useState } from "react"
+import { useRecoilState } from "recoil"
 
-interface HeaderUserProfileType{
-    data: Session | null | undefined;
-}
-
-export default function HeaderUserProfile({data}:HeaderUserProfileType){
-    const router = useRouter();
-    const [isLoggedIn,setLoggedIn] = useRecoilState(IsLoggedinState);
+export default function HeaderUserProfile(){
+    const router = useRouter()
+    const [isLoggedIn,setLoggedIn] = useRecoilState(IsLoggedinState)
+    const [AccountData,setAccountData] = useState<Session>()
 
     function signOutHandler(){
-        supabase.auth.signOut();
+        supabase.auth.signOut()
         supabase.auth.onAuthStateChange((event, session)=>{
             if(event === 'SIGNED_OUT'){
-                setLoggedIn(false);
+                setLoggedIn(false)
             }
         })
     }
+
+    useEffect(()=>{
+        const storedTokenData = localStorage.getItem('sb-grnaqmvtqsslvrivlqob-auth-token')
+        if(storedTokenData !== null){
+            setAccountData(JSON.parse(storedTokenData))
+        }
+    },[])
 
     return(
         <Menu>
             <MenuTrigger>
                 <MenuButton appearance="subtle" size="small">
-                    <Persona name={data?.user.email} textAlignment="center" size="small"/>
+                    <Persona name={AccountData?.user.email} textAlignment="center" size="small"/>
                 </MenuButton>
             </MenuTrigger>
 
