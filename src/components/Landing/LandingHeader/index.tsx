@@ -23,7 +23,6 @@ export default function LandingHeader() {
     useEffect(()=>{
         supabase.auth.getSession()
             .then(({data})=>{
-                setSessionData(data.session);
                 if(data.session != null){
                     setLoggedIn(true);
                 }
@@ -41,7 +40,7 @@ export default function LandingHeader() {
                     <Tab value="/blog" icon={<DocumentOnePage24Bundle/>}>블로그</Tab>
                 </TabList>
                 {isLoggedIn ? 
-                    <HeaderUserProfile data={sessionData}/>
+                    <HeaderUserProfile/>
                     : <Button onClick={()=>route.push('/auth/login')} appearance="primary" icon={<PersonCircleBundle/>}>로그인</Button>
                 }
             </Card>

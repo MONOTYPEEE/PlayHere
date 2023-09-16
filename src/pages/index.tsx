@@ -1,5 +1,5 @@
 import { UrlDirectoryState } from "@/atoms/UrlDirectoryAtom";
-import AnnouncePage from "@/components/Blog/BlogPage";
+import BlogPage from "@/components/Blog/BlogPage";
 import LandingHeader from "@/components/Landing/LandingHeader";
 import LandingHomePage from "@/components/Landing/LandingHomePage";
 import { useRouter } from "next/router";
@@ -18,7 +18,7 @@ export default function Home() {
         <>
             <LandingHeader/>
             {TabState==="/" && <LandingHomePage/>}
-            {TabState==="/blog" && <AnnouncePage/>}
+            {TabState==="/blog" && <BlogPage/>}
         </>
     )
 }
