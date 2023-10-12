@@ -7,21 +7,14 @@ import VideoThumb from "../VideoThumb";
 import { supabase } from "@/lib/supabaseInit";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { SessionTableAtom } from "@/atoms/SessionTableAtom";
 
 export default function QueueCard(){
     const router = useRouter()
     const style = QueueCardStyle()
-    const [Queue, setQueue] = useRecoilState(PlaylistQueue)
+    const [SessionData, setSessionData] = useRecoilState(SessionTableAtom)
 
     const chan = supabase.channel(router.query.id as string, {config:{broadcast:{self: true}}})
-    
-    chan.on(
-        'broadcast',
-        { event: 'addtoQueue' },
-        payload => {
-            setQueue([...Queue, payload.payload])
-        }
-    )
 
     return(
         <Card>
@@ -29,7 +22,7 @@ export default function QueueCard(){
                 <Title2>재생 대기열</Title2>
                 <QueueAddDialog/>
             </div>
-            {Queue.map((d)=>{
+            {SessionData?.queue?.map((d)=>{
                 return <VideoThumb data={d} key={d.id.videoId}/>
             })}
         </Card>

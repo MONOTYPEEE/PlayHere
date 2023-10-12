@@ -13,8 +13,3 @@ export default function InsideSession(){
         </div>
     )
 }
-//TODO
-//- 큐 전송 realtime 관련 코드
-//- 사용자 목록 realtime 로직
-//- /join 디렉토리
-//- Owner 구분 로직
