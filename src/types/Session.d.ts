@@ -3,7 +3,7 @@ declare interface SessionTableType {
     id: string
     inviteCode: string
     isPlaying: boolean
-    nowPlaying: Json | null
-    queue: Json[] | null
+    nowPlaying: YouTubeVideoItem | null
+    queue: YouTubeVideoItem[] | null
     title: string
 }
