@@ -14,8 +14,6 @@ export default function QueueCard(){
     const style = QueueCardStyle()
     const [SessionData, setSessionData] = useRecoilState(SessionTableAtom)
 
-    const chan = supabase.channel(router.query.id as string, {config:{broadcast:{self: true}}})
-
     return(
         <Card>
             <div className={style.e2e}>
