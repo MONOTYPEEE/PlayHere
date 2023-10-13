@@ -34,11 +34,23 @@ export default function QueueAddDialog(){
     }
 
     function AddQueue(){
-        if(SessionData?.queue && Selected !== 800){
+        if(Selected !== 800 && SessionData?.queue){
             supabase
                 .from('session')
                 .update({queue: [...SessionData?.queue, SearchResult?.items[Selected]]})
                 .eq('id', router.query.id)
+                .then(d=>{
+                    console.log(d, 'from AddQueue')
+                })
+        }
+        else if(Selected !== 800 && !SessionData?.queue){
+            supabase
+                .from('session')
+                .update({queue: [SearchResult?.items[Selected]]})
+                .eq('id', router.query.id)
+                .then(d=>{
+                    console.log(d, 'from AddQueue')
+                })
         }
     }
 
