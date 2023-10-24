@@ -1,4 +1,5 @@
 import { SessionTableAtom } from "@/atoms/SessionTableAtom"
+import ControllerCard from "@/components/Session/ControllerCard"
 import QueueCard from "@/components/Session/QueueCard"
 import { supabase } from "@/lib/supabaseInit"
 import { Center } from "@/styles/center"
@@ -28,6 +29,7 @@ export default function InsideSession(){
     return(
         <div className={CenterStyle.flex}>
             <div style={{width:'900px'}}>
+                <ControllerCard/>
                 <QueueCard/>
             </div>
         </div>
