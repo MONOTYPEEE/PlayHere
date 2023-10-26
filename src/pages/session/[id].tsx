@@ -4,6 +4,7 @@ import QueueCard from "@/components/Session/QueueCard"
 import { supabase } from "@/lib/supabaseInit"
 import { Center } from "@/styles/center"
 import router, { useRouter } from "next/router"
+import { useEffect } from "react"
 import { useRecoilState } from "recoil"
 
 export default function InsideSession(){
@@ -25,6 +26,19 @@ export default function InsideSession(){
         }
     )
     .subscribe()
+
+    useEffect(()=>{
+        if(router.isReady){
+            supabase
+                .from('session')
+                .select('*')
+                .eq('id', router.query.id)
+                .single()
+                .then((d)=>{
+                    setSessionData(d.data as SessionTableType)
+                })
+        }
+    },[router.isReady])
 
     return(
         <div className={CenterStyle.flex}>
