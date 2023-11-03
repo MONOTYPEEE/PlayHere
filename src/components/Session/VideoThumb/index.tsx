@@ -2,13 +2,13 @@ import { Body1, Image, Subtitle1, Subtitle2 } from "@fluentui/react-components"
 import { VideoThumbStyle } from "./style"
 
 interface videoThumbProps {
-    data: YouTubeVideoItem | undefined
+    data: YouTubeVideoItem | undefined | null
 }
 
 export default function VideoThumb({data}:videoThumbProps){
     const style = VideoThumbStyle()
 
-    if(data === undefined){
+    if(data === undefined || data === null){
         return(
             <div className={style.main}>
                 <div className={style.thumbnailDummy}/>
@@ -22,10 +22,10 @@ export default function VideoThumb({data}:videoThumbProps){
     else{
         return(
             <div className={style.main}>
-                <Image src={data.snippet.thumbnails.medium.url} width={160} height={90} shadow shape="rounded"/>
+                <Image src={data?.snippet.thumbnails.medium.url} width={160} height={90} shadow shape="rounded"/>
                 <div className={style.vertical}>
-                    <Subtitle1 className={style.text}>{data.snippet.title}</Subtitle1>
-                    <Body1>{data.snippet.channelTitle}</Body1>
+                    <Subtitle1 className={style.text}>{data?.snippet.title}</Subtitle1>
+                    <Body1>{data?.snippet.channelTitle}</Body1>
                 </div>
             </div>
         )
