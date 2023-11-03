@@ -6,6 +6,7 @@ import { Next24Filled, Next24Regular, Pause24Filled, Pause24Regular, Play24Fille
 import VideoThumb from "../VideoThumb";
 import { supabase } from "@/lib/supabaseInit";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 const Pause24Bundle = bundleIcon(Pause24Filled, Pause24Regular)
 const Play24Bundle = bundleIcon(Play24Filled, Play24Regular)
@@ -26,6 +27,23 @@ export default function ControllerCard(){
             })
     }
 
+    function SkipHandler(){
+        if(SessionData?.queue?.length === 0 && SessionData?.nowPlaying){
+            supabase
+                .from('session')
+                .update({nowPlaying: null})
+                .eq('id', router.query.id)
+                .then(()=>console.log('Skipping, null'))
+        }
+        else if(SessionData?.queue){
+            supabase
+                .from('session')
+                .update({nowPlaying: SessionData?.queue[0], queue: SessionData.queue.slice(1)})
+                .eq('id', router.query.id)
+                .then(()=>console.log('Skipping'))
+        }
+    }
+
     return(
         <Card>
             <Title2>지금 재생 중</Title2>
@@ -35,7 +53,7 @@ export default function ControllerCard(){
                     <Button appearance="primary" size="large" icon={<Pause24Bundle/>} onClick={PausePlayHander}>일시정지</Button>
                     : <Button appearance="primary" size="large" icon={<Play24Bundle/>} onClick={PausePlayHander}>재생</Button>
                 }
-                <Button appearance="subtle" size="large" icon={<Next24Bundle/>}>건너뛰기</Button>
+                <Button appearance="subtle" size="large" icon={<Next24Bundle/>} onClick={SkipHandler}>건너뛰기</Button>
             </div>
         </Card>
     )
