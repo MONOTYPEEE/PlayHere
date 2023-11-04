@@ -6,7 +6,7 @@ import { Next24Filled, Next24Regular, Pause24Filled, Pause24Regular, Play24Fille
 import VideoThumb from "../VideoThumb";
 import { supabase } from "@/lib/supabaseInit";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import ReactPlayer from "react-player";
 
 const Pause24Bundle = bundleIcon(Pause24Filled, Pause24Regular)
 const Play24Bundle = bundleIcon(Play24Filled, Play24Regular)
@@ -45,6 +45,13 @@ export default function ControllerCard(){
     }
 
     return(
+        <>
+        {SessionData && <ReactPlayer
+            onEnded={SkipHandler}
+            url={'https://youtube.com/watch?v='+SessionData?.nowPlaying?.id.videoId}
+            playing={SessionData?.isPlaying}
+            height={1} width={1}
+        />}
         <Card>
             <Title2>지금 재생 중</Title2>
             <VideoThumb data={SessionData?.nowPlaying}/>
@@ -56,5 +63,6 @@ export default function ControllerCard(){
                 <Button appearance="subtle" size="large" icon={<Next24Bundle/>} onClick={SkipHandler}>건너뛰기</Button>
             </div>
         </Card>
+        </>
     )
 }
