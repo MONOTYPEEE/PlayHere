@@ -1,4 +1,4 @@
-import { makeStyles, shorthands } from "@fluentui/react-components"
+import { makeStyles, shorthands, tokens } from "@fluentui/react-components"
 
 export const VideoThumbStyle = makeStyles({
     main:{
@@ -21,5 +21,10 @@ export const VideoThumbStyle = makeStyles({
         flexGrow: '1',
         flexShrink: '1',
         flexBasis: 'auto',
+    },
+    thumbnailDummy:{
+        height: '90px',
+        width: '160px',
+        backgroundColor: tokens.colorNeutralBackground2
     }
 })

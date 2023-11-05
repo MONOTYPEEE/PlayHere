@@ -7,11 +7,12 @@ import { useRecoilState } from "recoil"
 import { PlaylistQueue } from "@/atoms/PlaylistQueue"
 import { supabase } from "@/lib/supabaseInit"
 import { useRouter } from "next/router"
+import { SessionTableAtom } from "@/atoms/SessionTableAtom"
 
 export default function QueueAddDialog(){
     const style = QueueAddDialogStyle()
     const router = useRouter()
-    const [Queue, setQueue] = useRecoilState(PlaylistQueue)
+    const [SessionData, setSessionData] = useRecoilState(SessionTableAtom)
     const [SearchResult, setSearchResult] = useState<YoutubeResponse>()
     const [SearchBar,setSearchBar] = useState<string>('')
     const [Selected, setSelected] = useState<number>(800)
@@ -33,18 +34,24 @@ export default function QueueAddDialog(){
     }
 
     function AddQueue(){
-        const chan = supabase.channel(router.query.id as string, {config:{broadcast:{self: true}}})
-
-        chan.subscribe(status => {
-            console.log(status)
-            if(status === 'SUBSCRIBED' && Selected !== 800){
-                chan.send({
-                    type: 'broadcast',
-                    event: 'addtoQueue',
-                    payload: SearchResult?.items[Selected]
+        if(Selected !== 800 && SessionData?.queue){
+            supabase
+                .from('session')
+                .update({queue: [...SessionData?.queue, SearchResult?.items[Selected]]})
+                .eq('id', router.query.id)
+                .then(d=>{
+                    console.log(d, 'from AddQueue')
                 })
-            }
-        })
+        }
+        else if(Selected !== 800 && !SessionData?.queue){
+            supabase
+                .from('session')
+                .update({queue: [SearchResult?.items[Selected]]})
+                .eq('id', router.query.id)
+                .then(d=>{
+                    console.log(d, 'from AddQueue')
+                })
+        }
     }
 
     return(
