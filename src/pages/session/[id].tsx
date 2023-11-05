@@ -22,7 +22,7 @@ export default function InsideSession(){
             table: 'session'
         },
         payload => {
-            setSessionData({...SessionData?.nowPlaying ,...(payload.new as SessionTableType)})
+            setSessionData({...SessionData ,...(payload.new as SessionTableType)})
         }
     )
     .subscribe()
