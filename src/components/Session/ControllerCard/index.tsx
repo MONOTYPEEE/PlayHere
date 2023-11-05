@@ -7,6 +7,8 @@ import VideoThumb from "../VideoThumb";
 import { supabase } from "@/lib/supabaseInit";
 import { useRouter } from "next/router";
 import ReactPlayer from "react-player";
+import { IsHostState } from "@/atoms/IsHostAtom";
+import { useEffect } from "react";
 
 const Pause24Bundle = bundleIcon(Pause24Filled, Pause24Regular)
 const Play24Bundle = bundleIcon(Play24Filled, Play24Regular)
@@ -16,6 +18,7 @@ export default function ControllerCard(){
     const style = ControllerCardStyle()
     const router = useRouter()
     const [SessionData, setSessionData] = useRecoilState(SessionTableAtom)
+    const [isHost, setIsHost] = useRecoilState(IsHostState)
     
     function PausePlayHander(){
         supabase
@@ -44,13 +47,27 @@ export default function ControllerCard(){
         }
     }
 
+    async function CheckIsHost(){
+        const getUser = await supabase.auth.getUser()
+        
+        if(SessionData?.hostUUID === getUser.data.user?.id && SessionData?.hostUUID !== undefined){
+            setIsHost(true)
+        }
+    }
+
+    useEffect(()=>{
+        if(router.isReady){
+            CheckIsHost()
+        }
+    },[router.isReady, SessionData])
+
     return(
         <>
-        {SessionData && <ReactPlayer
+        {SessionData && isHost && <ReactPlayer
             onEnded={SkipHandler}
             url={'https://youtube.com/watch?v='+SessionData?.nowPlaying?.id.videoId}
             playing={SessionData?.isPlaying}
-            height={1} width={1}
+            // height={1} width={1}
         />}
         <Card>
             <Title2>지금 재생 중</Title2>
@@ -61,6 +78,7 @@ export default function ControllerCard(){
                     : <Button appearance="primary" size="large" icon={<Play24Bundle/>} onClick={PausePlayHander}>재생</Button>
                 }
                 <Button appearance="subtle" size="large" icon={<Next24Bundle/>} onClick={SkipHandler}>건너뛰기</Button>
+                <Button onClick={()=>console.log(SessionData)}>콘솔로그하세요</Button>
             </div>
         </Card>
         </>
