@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import HeaderUserProfile from "../HeaderUserProfile";
 import { IsLoggedinState } from "@/atoms/LoginAtom";
 import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabaseInit";
+import { supabase } from "@/util/supabaseInit";
 import { Session } from "@supabase/supabase-js";
 
 const Home24Bundle = bundleIcon(Home24Filled, Home24Regular), DocumentOnePage24Bundle = bundleIcon(DocumentOnePageSparkle24Filled, DocumentOnePageSparkle24Regular);

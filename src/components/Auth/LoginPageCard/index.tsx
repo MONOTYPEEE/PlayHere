@@ -3,7 +3,7 @@ import { ArrowLeft20Filled, PersonCircle28Filled, PersonCircle28Regular, bundleI
 import React, { FormEvent, useState } from "react";
 import { LoginPageCardStyle } from "./style";
 import { useRouter } from "next/router";
-import { supabase } from "@/lib/supabaseInit";
+import { supabase } from "@/util/supabaseInit";
 
 const PersonCircle28Bundle = bundleIcon(PersonCircle28Filled, PersonCircle28Regular)
 

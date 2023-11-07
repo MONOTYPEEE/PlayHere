@@ -1,6 +1,6 @@
 import JoinCardStack from "@/components/join/JoinCardStack"
 import ErrorAlert from "@/components/join/ErrorAlert"
-import { supabase } from "@/lib/supabaseInit"
+import { supabase } from "@/util/supabaseInit"
 import { Center } from "@/styles/center"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"

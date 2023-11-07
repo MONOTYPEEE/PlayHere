@@ -5,7 +5,7 @@ import { useState } from "react"
 import { QueueAddDialogStyle } from "./style"
 import { useRecoilState } from "recoil"
 import { PlaylistQueue } from "@/atoms/PlaylistQueue"
-import { supabase } from "@/lib/supabaseInit"
+import { supabase } from "@/util/supabaseInit"
 import { useRouter } from "next/router"
 import { SessionTableAtom } from "@/atoms/SessionTableAtom"
 

@@ -1,7 +1,7 @@
 import { SessionTableAtom } from "@/atoms/SessionTableAtom"
 import ControllerCard from "@/components/Session/ControllerCard"
 import QueueCard from "@/components/Session/QueueCard"
-import { supabase } from "@/lib/supabaseInit"
+import { supabase } from "@/util/supabaseInit"
 import { Center } from "@/styles/center"
 import router, { useRouter } from "next/router"
 import { useEffect } from "react"

@@ -1,4 +1,4 @@
-import { supabase } from "@/lib/supabaseInit";
+import { supabase } from "@/util/supabaseInit";
 import { useState, useEffect } from "react";
 
 export default function useBlogArticle(postId: string) {
