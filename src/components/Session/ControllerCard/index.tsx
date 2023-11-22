@@ -4,7 +4,7 @@ import { SessionTableAtom } from "@/atoms/SessionTableAtom";
 import { ControllerCardStyle } from "./style";
 import { Next24Filled, Next24Regular, Pause24Filled, Pause24Regular, Play24Filled, Play24Regular, bundleIcon } from "@fluentui/react-icons";
 import VideoThumb from "../VideoThumb";
-import { supabase } from "@/lib/supabaseInit";
+import { supabase } from "@/util/supabaseInit";
 import { useRouter } from "next/router";
 import ReactPlayer from "react-player";
 import { IsHostState } from "@/atoms/IsHostAtom";

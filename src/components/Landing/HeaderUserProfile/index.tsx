@@ -1,5 +1,5 @@
 import { IsLoggedinState } from "@/atoms/LoginAtom"
-import { supabase } from "@/lib/supabaseInit"
+import { supabase } from "@/util/supabaseInit"
 import { MenuButton, Menu, MenuItem, MenuList, MenuPopover, MenuTrigger, Persona } from "@fluentui/react-components"
 import { SignOut24Filled } from "@fluentui/react-icons"
 import { Session } from "@supabase/supabase-js"
