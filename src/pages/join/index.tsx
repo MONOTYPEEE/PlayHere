@@ -1,4 +1,4 @@
-import LoginComponent from "@/components/Landing/LoginComponent"
+import JoinCard from "@/components/Landing/JoinCard"
 import { Center } from "@/styles/center"
 import { Home24Filled, Home24Regular, bundleIcon } from "@fluentui/react-icons"
 
@@ -9,7 +9,7 @@ export default function Join(){
 
     return(
         <div className={centerStyle.flex}>
-            <LoginComponent/>
+            <JoinCard/>
         </div>
     )
 }

@@ -10,7 +10,7 @@ import CreateSessionDialog from "../CreateSession"
 const DoorArrowLeftBundle = bundleIcon(DoorArrowLeft24Filled, DoorArrowLeft24Regular)
 const PersonCircleBundle = bundleIcon(PersonCircle24Filled, PersonCircle24Regular)
 
-export default function LoginComponent(){
+export default function JoinCard(){
     const style = Style()
     const router = useRouter()
     const [JoinCode, setJoinCode] = useState<string>('')
