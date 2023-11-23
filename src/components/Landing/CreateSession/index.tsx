@@ -1,5 +1,5 @@
 import { supabase } from "@/util/supabaseInit"
-import { Button, Dialog, DialogActions, DialogBody, DialogSurface, DialogTitle, DialogTrigger, Input, Field } from "@fluentui/react-components"
+import { Button, Dialog, DialogActions, DialogBody, DialogSurface, DialogTitle, DialogTrigger, Input, Field, Spinner } from "@fluentui/react-components"
 import { bundleIcon, AddCircle24Filled, AddCircle24Regular } from "@fluentui/react-icons"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
@@ -13,6 +13,7 @@ export default function CreateSessionDialog(){
     const [isLoading, setIsLoading] = useState<boolean>(false)
     
     useEffect(()=>{
+        setIsLoading(false)
         if(router.isReady){
             supabase.auth.getSession().then(d=>{
                 setUserID(d.data.session?.user.id)
@@ -21,6 +22,7 @@ export default function CreateSessionDialog(){
     },[router.isReady])
 
     function createSession(){
+        setIsLoading(true)
         supabase
         .from('session')
         .insert({
@@ -28,7 +30,21 @@ export default function CreateSessionDialog(){
             hostUUID: userID
         })
         .then(({data, error})=>{
-            
+            setIsLoading(false)
+            if(error){
+                console.log(error)
+                return
+            }
+            supabase
+                .from('session')
+                .select()
+                .eq('hostUUID', userID)
+                .single()
+                .then(({data, error})=>{
+                    if(data){
+                        router.push(`/session/${data.id}`)
+                    }
+                })
         })
     }
 
@@ -46,8 +62,8 @@ export default function CreateSessionDialog(){
                     </Field>
                 </DialogBody>
                 <DialogActions>
-                    <DialogTrigger>
-                        <Button appearance="primary" onClick={createSession}>생성</Button>
+                    <DialogTrigger action="open">
+                        <Button appearance="primary" onClick={createSession} disabled={isLoading}>{isLoading ? <Spinner size="tiny"/> : '생성'}</Button>
                     </DialogTrigger>
                     <DialogTrigger disableButtonEnhancement>
                         <Button>닫기</Button>
