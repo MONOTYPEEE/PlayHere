@@ -9,7 +9,7 @@ export default function NowPlayingCard({data}: NowPlayingCardType){
     return(
         <Card>
             <Title2>지금 재생 중</Title2>
-            { data && <VideoThumb data={data}/> }
+            <VideoThumb data={data}/>
         </Card>
     )
 }

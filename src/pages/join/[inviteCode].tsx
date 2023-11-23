@@ -1,9 +1,10 @@
-import JoinCardStack from "@/components/join/JoinCardStack"
 import ErrorAlert from "@/components/join/ErrorAlert"
 import { supabase } from "@/util/supabaseInit"
 import { Center } from "@/styles/center"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
+import JoinCard from "@/components/join/joinCard"
+import NowPlayingCard from "@/components/join/NowPlayingCard"
 
 export default function InviteCode(){
     const router = useRouter()
@@ -23,7 +24,6 @@ export default function InviteCode(){
                         setIsErrorOpen(true)
                     }
                     else{
-                        console.log(data.nowPlaying)
                         setSessionInfo(data.nowPlaying)
                     }
                 })
@@ -32,7 +32,12 @@ export default function InviteCode(){
 
     return(
         <div className={centerStyle.flex} style={{gap: '16px', flexDirection: 'column'}}>
-            {SessionInfo && <JoinCardStack isOpen={IsErrorOpen} nowPlaying={SessionInfo}/>}
+            {!IsErrorOpen &&
+                <div>
+                    <JoinCard/>
+                    <NowPlayingCard data={SessionInfo}/>
+                </div>
+            }
             <ErrorAlert isOpen={IsErrorOpen}/>
         </div>
     )
