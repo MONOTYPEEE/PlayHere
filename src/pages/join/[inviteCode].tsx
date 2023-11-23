@@ -10,7 +10,7 @@ export default function InviteCode(){
     const router = useRouter()
     const centerStyle = Center()
     const [IsErrorOpen, setIsErrorOpen] = useState<boolean>(false)
-    const [SessionInfo, setSessionInfo] = useState<YouTubeVideoItem>()
+    const [SessionInfo, setSessionInfo] = useState<SessionTableType>()
 
     useEffect(()=>{
         if(router.isReady){
@@ -24,7 +24,7 @@ export default function InviteCode(){
                         setIsErrorOpen(true)
                     }
                     else{
-                        setSessionInfo(data.nowPlaying)
+                        setSessionInfo(data as SessionTableType)
                     }
                 })
         }
@@ -32,10 +32,10 @@ export default function InviteCode(){
 
     return(
         <div className={centerStyle.flex} style={{gap: '16px', flexDirection: 'column'}}>
-            {!IsErrorOpen &&
+            {SessionInfo && !IsErrorOpen &&
                 <div>
-                    <JoinCard/>
-                    <NowPlayingCard data={SessionInfo}/>
+                    <JoinCard sessionID={SessionInfo?.id}/>
+                    <NowPlayingCard data={SessionInfo.nowPlaying ?? undefined}/>
                 </div>
             }
             <ErrorAlert isOpen={IsErrorOpen}/>
