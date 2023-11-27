@@ -66,6 +66,8 @@ export default function ControllerCard(){
         <>
         {SessionData && isHost && <ReactPlayer
             onEnded={SkipHandler}
+            onPause={PausePlayHander}
+            onPlay={PausePlayHander}
             url={'https://youtube.com/watch?v='+SessionData?.nowPlaying?.id.videoId}
             playing={SessionData?.isPlaying}
             height={1} width={1}
