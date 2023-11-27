@@ -1,4 +1,4 @@
-import { Button, Card, Title2 } from "@fluentui/react-components";
+import { Button, Card, ProgressBar, Title2 } from "@fluentui/react-components";
 import { useRecoilState } from "recoil";
 import { SessionTableAtom } from "@/atoms/SessionTableAtom";
 import { ControllerCardStyle } from "./style";
@@ -8,7 +8,7 @@ import { supabase } from "@/util/supabaseInit";
 import { useRouter } from "next/router";
 import ReactPlayer from "react-player";
 import { IsHostState } from "@/atoms/IsHostAtom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Pause24Bundle = bundleIcon(Pause24Filled, Pause24Regular)
 const Play24Bundle = bundleIcon(Play24Filled, Play24Regular)
@@ -19,6 +19,7 @@ export default function ControllerCard(){
     const router = useRouter()
     const [SessionData, setSessionData] = useRecoilState(SessionTableAtom)
     const [isHost, setIsHost] = useRecoilState(IsHostState)
+    const [videoProgress, setVideoProgress] = useState<number>(0.0)
     
     function PausePlayHander(){
         supabase
@@ -67,11 +68,13 @@ export default function ControllerCard(){
             onEnded={SkipHandler}
             url={'https://youtube.com/watch?v='+SessionData?.nowPlaying?.id.videoId}
             playing={SessionData?.isPlaying}
-            // height={1} width={1}
+            height={1} width={1}
+            onProgress={(e)=>setVideoProgress(e.played)}
         />}
         <Card>
             <Title2>지금 재생 중</Title2>
             <VideoThumb data={SessionData?.nowPlaying}/>
+            <ProgressBar value={videoProgress}/>
             <div className={style.buttonContainer}>
                 {SessionData?.isPlaying ?
                     <Button appearance="primary" size="large" icon={<Pause24Bundle/>} onClick={PausePlayHander}>일시정지</Button>
