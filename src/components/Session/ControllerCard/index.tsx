@@ -1,4 +1,4 @@
-import { Button, Card, ProgressBar, Title2 } from "@fluentui/react-components";
+import { Button, Card, ProgressBar, Spinner, Title2 } from "@fluentui/react-components";
 import { useRecoilState } from "recoil";
 import { SessionTableAtom } from "@/atoms/SessionTableAtom";
 import { ControllerCardStyle } from "./style";
@@ -20,14 +20,18 @@ export default function ControllerCard(){
     const [SessionData, setSessionData] = useRecoilState(SessionTableAtom)
     const [isHost, setIsHost] = useRecoilState(IsHostState)
     const [videoProgress, setVideoProgress] = useState<number>(0.0)
+    const [isLoading, setIsLoading] = useState<boolean>(false)
     
     function PausePlayHander(){
+        setIsLoading(true)
         supabase
             .from('session')
             .update({isPlaying: !SessionData?.isPlaying})
             .eq('id', router.query.id)
             .then((d)=>{
-                console.log(d, 'from PausePlayHandler')
+                if(!d.error){
+                    setIsLoading(false)
+                }
             })
     }
 
@@ -66,8 +70,6 @@ export default function ControllerCard(){
         <>
         {SessionData && isHost && <ReactPlayer
             onEnded={SkipHandler}
-            onPause={PausePlayHander}
-            onPlay={PausePlayHander}
             url={'https://youtube.com/watch?v='+SessionData?.nowPlaying?.id.videoId}
             playing={SessionData?.isPlaying}
             height={1} width={1}
@@ -79,8 +81,8 @@ export default function ControllerCard(){
             <ProgressBar value={videoProgress}/>
             <div className={style.buttonContainer}>
                 {SessionData?.isPlaying ?
-                    <Button appearance="primary" size="large" icon={<Pause24Bundle/>} onClick={PausePlayHander}>일시정지</Button>
-                    : <Button appearance="primary" size="large" icon={<Play24Bundle/>} onClick={PausePlayHander}>재생</Button>
+                    <Button appearance="primary" size="large" icon={<Pause24Bundle/>} onClick={PausePlayHander} disabled={isLoading}>{isLoading ? <Spinner size="tiny"/> : '일시정지'}</Button>
+                    : <Button appearance="primary" size="large" icon={<Play24Bundle/>} onClick={PausePlayHander} disabled={isLoading}>{isLoading ? <Spinner size="tiny"/> : '재생'}</Button>
                 }
                 <Button appearance="subtle" size="large" icon={<Next24Bundle/>} onClick={SkipHandler}>건너뛰기</Button>
                 <Button onClick={()=>console.log(SessionData)}>콘솔로그하세요</Button>
