@@ -1,4 +1,4 @@
-import LoginComponent from "../LoginComponent";
+import JoinCard from "../JoinCard";
 import LandingTextSection from "../LandingTextSection";
 import { LandingTextSectionStyle } from "../LandingTextSection/style";
 
@@ -11,7 +11,7 @@ export default function LandingHomePage(){
 
     return(
         <div className={style.Section1} style={backgroundPattern}>
-            <LoginComponent/>
+            <JoinCard/>
             <LandingTextSection/>
         </div>
     )
