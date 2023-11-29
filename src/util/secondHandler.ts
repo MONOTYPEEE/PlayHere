@@ -8,7 +8,7 @@ export default function secondHandler(time:YouTubeProgress | undefined){
         const videoMinute = Math.floor(videoFloor / 60)
         const videoSecond = videoFloor - videoMinute * 60
 
-        return `${String(playedMinute).padStart(2, '0')}:${String(playedSecond).padStart(2, '0')} / ${videoMinute}:${videoSecond}`
+        return `${String(playedMinute).padStart(2, '0')}:${String(playedSecond).padStart(2, '0')} / ${isNaN(videoFloor) ? '00' : String(videoMinute).padStart(2,'0')}:${isNaN(videoFloor) ? '00' : String(videoSecond).padStart(2,'0')}`
     }
     return '00:00 / 00:00'
 }
