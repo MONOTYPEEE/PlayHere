@@ -44,3 +44,11 @@ declare interface YoutubeResponse {
     pageInfo: YoutubeResponsePageInfo;
     items: YouTubeVideoItem[];
 }
+
+
+declare interface YouTubeProgress{
+    loaded: number;
+    loadedSeconds: number;
+    played: number;​
+    playedSeconds: number;
+}
