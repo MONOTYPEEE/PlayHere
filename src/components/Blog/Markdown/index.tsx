@@ -1,8 +1,8 @@
 import { Body2, Title1, Title2, Title3, makeStyles } from "@fluentui/react-components";
-import { HeadingComponent } from "react-markdown/util/ast-to-react";
-import { ReactMarkdown } from "react-markdown/util/react-markdown";
+import { HeadingComponent } from "react-markdown/lib/ast-to-react";
 import { MarkdownStyle } from "./style";
 import React from "react";
+import ReactMarkdown from "react-markdown";
 
 interface MarkdownType{
     body: string;
