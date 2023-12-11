@@ -72,7 +72,7 @@ export default function LoginPageCard(){
                 </Button>
             </form>
             <div className={style.hzFlex}>
-                <Button appearance="subtle">회원가입</Button>
+                <Button appearance="subtle" onClick={()=>router.push('/auth/signUp')}>가입</Button>
                 <Button appearance="subtle">비밀번호 재설정</Button>
             </div>
         </Card>
